@@ -43,7 +43,6 @@
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -67,6 +66,23 @@
   # services.xserver.libinput.enable = true;
 
   nixpkgs = {
+    overlays = [
+      (self: super:
+        let
+          nerdtree-l-open-h-close = super.vimUtils.buildVimPlugin {
+            name = "nerdtree-l-open-h-close ";
+            src = inputs.nerdtree-l-open-h-close;
+          };
+        in
+        {
+          vimPlugins =
+            super.vimPlugins // {
+              inherit nerdtree-l-open-h-close;
+            };
+        }
+      )
+    ];
+
     config = {
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
         "google-chrome"

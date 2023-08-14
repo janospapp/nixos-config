@@ -21,6 +21,22 @@
         "type": "github"
       }
     },
+    "nerdtree-l-open-h-close": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1551118091,
+        "narHash": "sha256-PvPmh6xw1LPSAyXO6cjpePUjuqs/kbi6/RAn+PFXJg4=",
+        "owner": "flw-cn",
+        "repo": "vim-nerdtree-l-open-h-close",
+        "rev": "aed8774ee70ef93c13da5e0edd10de48213a061b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "flw-cn",
+        "repo": "vim-nerdtree-l-open-h-close",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1690927903,
@@ -40,6 +56,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "nerdtree-l-open-h-close": "nerdtree-l-open-h-close",
         "nixpkgs": "nixpkgs"
       }
     }

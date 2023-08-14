@@ -6,6 +6,11 @@
 
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nerdtree-l-open-h-close = {
+      url = "github:flw-cn/vim-nerdtree-l-open-h-close";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {
