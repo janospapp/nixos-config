@@ -15,6 +15,30 @@
       userEmail = "papp.janos.90@gmail.com";
     };
 
+    kitty = {
+      enable = true;
+      theme = "Nord";
+
+      keybindings = {
+        "kitty_mod+e" = "launch --location=vsplit --cwd=current";
+        "kitty_mod+o" = "launch --location=hsplit --cwd=current";
+        "alt+up" = "neighboring_window up";
+        "alt+left" = "neighboring_window left";
+        "alt+right" = "neighboring_window right";
+        "alt+down" = "neighboring_window down";
+      };
+
+      settings = {
+        font_size = "18.0";
+        tab_bar_style = "powerline";
+        tab_powerline_style = "slanted";
+      };
+
+      shellIntegration = {
+        enableZshIntegration = true;
+      };
+    };
+
     vim = {
       enable = true;
       defaultEditor = true;
@@ -26,6 +50,7 @@
         fzf-vim
         nerdtree
         nerdtree-l-open-h-close
+        nord-vim
         surround
         vim-airline-themes
         vim-buffergator
@@ -52,6 +77,7 @@
         filetype plugin indent on
         set nowrap
         set encoding=utf8
+        colorscheme nord
 
         nmap <C-n> :NERDTreeToggle<CR>
         nmap <C-j> :NERDTreeFind<CR>
