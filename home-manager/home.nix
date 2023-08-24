@@ -4,11 +4,17 @@
     homeDirectory = "/home/janos";
 
     stateVersion = "23.05";
-    packages = with pkgs; [ google-chrome kitty ];
+    packages = with pkgs; [
+      google-chrome
+      kitty
+      nordic
+      papirus-icon-theme
+    ];
   };
 
   programs = {
     home-manager.enable = true;
+
     git = {
       enable = true;
       userName = "Janos Papp";
@@ -42,6 +48,18 @@
 
       shellIntegration = {
         enableZshIntegration = true;
+      };
+    };
+
+    plasma = {
+      enable = true;
+      workspace.clickItemTo = "select";
+
+      configFile = {
+        kdeglobals = {
+          Icons.Theme = "Papirus-Dark";
+          KDE.LookAndFeelPackage = "Nordic-bluish";
+        };
       };
     };
 

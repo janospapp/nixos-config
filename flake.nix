@@ -7,6 +7,10 @@
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    plasma-manager.url = "github:pjones/plasma-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.inputs.home-manager.follows = "home-manager";
+
     nerdtree-l-open-h-close = {
       url = "github:flw-cn/vim-nerdtree-l-open-h-close";
       flake = false;
@@ -25,6 +29,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.janos = import ./home-manager/home.nix;
+            home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
           }
         ];
       };
