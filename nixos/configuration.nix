@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, outputs, config, lib, pkgs, ... }:
 
 {
   imports =
@@ -67,20 +67,7 @@
 
   nixpkgs = {
     overlays = [
-      (self: super:
-        let
-          nerdtree-l-open-h-close = super.vimUtils.buildVimPlugin {
-            name = "nerdtree-l-open-h-close ";
-            src = inputs.nerdtree-l-open-h-close;
-          };
-        in
-        {
-          vimPlugins =
-            super.vimPlugins // {
-              inherit nerdtree-l-open-h-close;
-            };
-        }
-      )
+      outputs.overlays.vim-plugins
     ];
 
     config = {

@@ -34,6 +34,8 @@
   {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
+    overlays = import ./overlays { inherit inputs; };
+
     nixosConfigurations = {
       flaked-nixos = let
         system = "x86_64-linux";
