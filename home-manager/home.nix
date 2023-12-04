@@ -1,5 +1,9 @@
-{ inputs, lib, config, pkgs, ... }: {
-  home = {
+{ inputs, outputs, system, pkgs, ... }: {
+  home = let
+    localPackages = with outputs.packages.${system}; [
+      plasma-panel-templates
+    ];
+  in {
     username = "janos";
     homeDirectory = "/home/janos";
 
@@ -9,7 +13,7 @@
       kitty
       nordic
       papirus-icon-theme
-    ];
+    ] ++ localPackages;
   };
 
   programs = {
@@ -167,7 +171,7 @@
 
       initExtra = ''
         zstyle ':completion:*' menu select
-        
+
         bindkey -M viins '^l' end-of-line
 
         zmodload zsh/complist
@@ -176,7 +180,7 @@
         bindkey -M menuselect '^k' vi-up-line-or-history
         bindkey -M menuselect '^l' vi-forward-char
         bindkey -M menuselect '\t' accept-line
-        
+
         setopt autocd nomatch notify
         unsetopt beep
       '';
