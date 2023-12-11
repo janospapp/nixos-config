@@ -6,8 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -73,6 +72,7 @@
     config = {
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
         "google-chrome"
+        "spotify"
       ];
     };
   };
@@ -94,6 +94,7 @@
     curl
     fzf
     ripgrep
+    tree
     vim
     wget
   ];

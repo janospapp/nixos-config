@@ -13,6 +13,7 @@
       kitty
       nordic
       papirus-icon-theme
+      spotify
     ] ++ localPackages;
   };
 

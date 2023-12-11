@@ -37,7 +37,7 @@
     overlays = import ./overlays { inherit inputs; };
 
     nixosConfigurations = {
-      flaked-nixos = let
+      virtualbox = let
         system = "x86_64-linux";
       in nixpkgs.lib.nixosSystem {
         inherit system;
@@ -45,6 +45,7 @@
 
         modules = [
           ./nixos/configuration.nix
+          ./nixos/hardware/virtualbox.nix
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.extraSpecialArgs = { inherit inputs outputs system; };
