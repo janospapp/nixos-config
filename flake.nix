@@ -30,6 +30,22 @@
     ];
 
     forAllSystems = nixpkgs.lib.genAttrs systems;
+
+    generateOsConfig = { system, hardware, extraModules ? [] }: nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = { inherit inputs outputs system; };
+
+      modules = [
+        ./nixos/configuration.nix
+        ./nixos/hardware/${hardware}.nix
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.extraSpecialArgs = { inherit inputs outputs system; };
+          home-manager.users.janos = import ./home-manager/home.nix;
+          home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+        }
+      ] ++ extraModules;
+    };
   in
   {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
@@ -37,21 +53,16 @@
     overlays = import ./overlays { inherit inputs; };
 
     nixosConfigurations = {
-      virtualbox = let
+      virtualbox = generateOsConfig {
         system = "x86_64-linux";
-      in nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs outputs system; };
+        hardware = "virtualbox";
+      };
 
-        modules = [
-          ./nixos/configuration.nix
-          ./nixos/hardware/virtualbox.nix
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.extraSpecialArgs = { inherit inputs outputs system; };
-            home-manager.users.janos = import ./home-manager/home.nix;
-            home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
-          }
+      old-hp = generateOsConfig {
+        system = "x86_64-linux";
+        hardware = "old-hp";
+        extraModules = [
+          ./nixos/hardware/disko/standard.nix
         ];
       };
     };
