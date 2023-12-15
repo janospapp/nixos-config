@@ -21,7 +21,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
   let
     inherit (self) outputs;
     systems = [
@@ -63,6 +63,7 @@
         hardware = "old-hp";
         extraModules = [
           ./nixos/hardware/disko/standard.nix
+          disko.nixosModules.disko
         ];
       };
     };
