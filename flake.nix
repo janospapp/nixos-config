@@ -33,7 +33,7 @@
 
     generateOsConfig = { system, hardware, extraModules ? [] }: nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs outputs system; };
+      specialArgs = { inherit inputs outputs system hardware; };
 
       modules = [
         ./nixos/configuration.nix
