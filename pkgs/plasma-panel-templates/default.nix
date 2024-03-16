@@ -20,6 +20,8 @@ stdenvNoCC.mkDerivation {
 
     mkdir -p $TEMPLATE_DIR
     cp -r ./topbarPanel $TEMPLATE_DIR
+    mv $TEMPLATE_DIR/topbarPanel $TEMPLATE_DIR/org.kde.plasma.desktop.janospapp.topbarPanel
+    chmod +x -R $TEMPLATE_DIR
 
     runHook postInstall
   '';
