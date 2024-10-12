@@ -7,7 +7,7 @@
     username = "janos";
     homeDirectory = "/home/janos";
 
-    stateVersion = "23.05";
+    stateVersion = "24.05";
     packages = with pkgs; [
       google-chrome
       kitty

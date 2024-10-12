@@ -44,7 +44,10 @@
   # services.xserver.xkbOptions = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplip ];
+  };
 
   # Enable sound.
   # sound.enable = true;
@@ -57,6 +60,12 @@
     pulse.enable = true;
   };
 
+  # Enable scanners
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ pkgs.epkowa ];
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -66,10 +75,11 @@
     ];
 
     config = {
-      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-        "google-chrome"
-        "spotify"
-      ];
+      allowUnfree = true;
+      #allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      #  "google-chrome"
+      #  "spotify"
+      #];
     };
   };
 
@@ -80,7 +90,7 @@
   users.users.janos = {
     isNormalUser = true;
     initialPassword = "P@ssw0rd";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "scanner" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
@@ -89,6 +99,7 @@
   environment.systemPackages = with pkgs; [
     curl
     fzf
+    gnome.simple-scan
     ripgrep
     tree
     vim
@@ -126,7 +137,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
