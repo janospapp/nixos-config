@@ -9,6 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     plasma-manager = {
       url = "github:pjones/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +23,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, nixos-hardware, ... }@inputs:
   let
     inherit (self) outputs;
     systems = [
@@ -64,6 +66,16 @@
         extraModules = [
           #./nixos/hardware/disko/standard.nix
           #disko.nixosModules.disko
+        ];
+      };
+
+      dell-xps = generateOsConfig {
+        system = "x86_64-linux";
+        hardware = "dell-xps";
+        extraModules = [
+          ./nixos/hardware/disko/standard.nix
+          disko.nixosModules.disko
+          nixos-hardware.nixosModules.dell-xps-13-9310
         ];
       };
     };
