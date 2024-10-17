@@ -21,6 +21,11 @@
   programs = {
     home-manager.enable = true;
 
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
     git = {
       enable = true;
       userName = "Janos Papp";
@@ -214,6 +219,8 @@
 
         setopt autocd nomatch notify
         unsetopt beep
+
+        eval $(direnv hook zsh)
       '';
 
       plugins = [

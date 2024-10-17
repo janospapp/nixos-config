@@ -98,6 +98,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     curl
+    direnv
     fzf
     gnome.simple-scan
     ripgrep
