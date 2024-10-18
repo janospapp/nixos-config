@@ -9,7 +9,7 @@
 
     stateVersion = "24.05";
     packages = with pkgs; [
-      google-chrome
+      firefox
       kitty
       nordic
       papirus-icon-theme
