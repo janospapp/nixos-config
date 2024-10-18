@@ -114,10 +114,13 @@
         nord-vim
         ultisnips
         vim-airline-themes
-        vim-buffergator
+        vim-endwise
         vim-surround
         vim-tmux-navigator
         vimux
+        #arpeggio
+        #bundler
+        #vimux-ruby-test
       ];
 
       settings = {
@@ -144,16 +147,24 @@
         colorscheme nord
 
         nmap <C-n> :NERDTreeToggle<CR>
-        nmap <C-j> :NERDTreeFind<CR>
+        nmap <leader>j :NERDTreeFind<CR>
         let NERDTreeShowHidden=1
         let NERDTreeWinSize=45
         let NERDTreeChDirMode=2
 
+        let g:vimux_ruby_clear_console_on_run = 0
+        let g:vimux_ruby_file_relative_paths = 1
+        let g:tmux_navigator_disable_when_zoomed = 1
+        let g:UltiSnipsExpandTrigger="<tab>"
+        let g:UltiSnipsJumpForwardTrigger="<c-j>"
+        let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+        let g:UltiSnipsEditSplit="vertical"
         let g:airline_theme='deus'
 
         " Searching files and text
         nmap <C-p> :Files<CR>
         nmap <C-f> :Rg<CR>
+        nmap <C-b> :Buffers<CR>
         " Searching for the current word under the cursor
         nmap <leader>f :Rg \b<C-R><C-W>\b<CR>
 
@@ -188,6 +199,15 @@
 
         packloadall
         silent! helptags ALL
+
+        " Arpeggio mappings
+        Arpeggio noremap vi :VimuxInspectRunner<CR>
+        Arpeggio noremap vp :VimuxPromptCommand<CR>
+        Arpeggio noremap vl :VimuxRunLastCommand<CR>
+        Arpeggio noremap rti :RunRubyFocusedTest<CR>
+        Arpeggio noremap rtc :RunRubyFocusedContext<CR>
+        Arpeggio noremap rtf :RunAllRubyTests<CR>
+        Arpeggio noremap rta :VimuxRunCommand("rspec")<CR>
       '';
     };
 
@@ -220,7 +240,7 @@
         setopt autocd nomatch notify
         unsetopt beep
 
-        eval $(direnv hook zsh)
+        eval "$(direnv hook zsh)"
       '';
 
       plugins = [
