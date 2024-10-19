@@ -38,22 +38,6 @@
         "type": "github"
       }
     },
-    "nerdtree-l-open-h-close": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1551118091,
-        "narHash": "sha256-PvPmh6xw1LPSAyXO6cjpePUjuqs/kbi6/RAn+PFXJg4=",
-        "owner": "flw-cn",
-        "repo": "vim-nerdtree-l-open-h-close",
-        "rev": "aed8774ee70ef93c13da5e0edd10de48213a061b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "flw-cn",
-        "repo": "vim-nerdtree-l-open-h-close",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1728729581,
@@ -129,10 +113,77 @@
       "inputs": {
         "disko": "disko",
         "home-manager": "home-manager",
-        "nerdtree-l-open-h-close": "nerdtree-l-open-h-close",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "plasma-manager": "plasma-manager"
+        "plasma-manager": "plasma-manager",
+        "vim-arpeggio": "vim-arpeggio",
+        "vim-bundler": "vim-bundler",
+        "vim-nerdtree-l-open-h-close": "vim-nerdtree-l-open-h-close",
+        "vimux-ruby-test": "vimux-ruby-test"
+      }
+    },
+    "vim-arpeggio": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1597883245,
+        "narHash": "sha256-volgKWr1mNwmvOQQEw7feBztmpDVyPJG1n+OI8L1BRA=",
+        "owner": "kana",
+        "repo": "vim-arpeggio",
+        "rev": "01c8fc1a72ef58e490ee0490c65ee313b1b6e843",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kana",
+        "repo": "vim-arpeggio",
+        "type": "github"
+      }
+    },
+    "vim-bundler": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693086479,
+        "narHash": "sha256-z8ZQhCITVxW+RShX5drAQm4aKFWT5K3yw72nBcwVGa4=",
+        "owner": "tpope",
+        "repo": "vim-bundler",
+        "rev": "c261509e78fc8dc55ad1fcf3cd7cdde49f35435c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-bundler",
+        "type": "github"
+      }
+    },
+    "vim-nerdtree-l-open-h-close": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1551118091,
+        "narHash": "sha256-PvPmh6xw1LPSAyXO6cjpePUjuqs/kbi6/RAn+PFXJg4=",
+        "owner": "flw-cn",
+        "repo": "vim-nerdtree-l-open-h-close",
+        "rev": "aed8774ee70ef93c13da5e0edd10de48213a061b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "flw-cn",
+        "repo": "vim-nerdtree-l-open-h-close",
+        "type": "github"
+      }
+    },
+    "vimux-ruby-test": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1503003138,
+        "narHash": "sha256-3pyZfSRPOcjNyFtu49G2WTZEQTATygB/koJnUO258Rk=",
+        "owner": "pgr0ss",
+        "repo": "vimux-ruby-test",
+        "rev": "3e478b0a9136335cfa059c16c4ea340c17d8c1ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pgr0ss",
+        "repo": "vimux-ruby-test",
+        "type": "github"
       }
     }
   },

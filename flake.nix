@@ -17,8 +17,21 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    nerdtree-l-open-h-close = {
+    # Vim plugins
+    vim-arpeggio = {
+      url = "github:kana/vim-arpeggio";
+      flake = false;
+    };
+    vim-bundler = {
+      url = "github:tpope/vim-bundler";
+      flake = false;
+    };
+    vim-nerdtree-l-open-h-close = {
       url = "github:flw-cn/vim-nerdtree-l-open-h-close";
+      flake = false;
+    };
+    vimux-ruby-test = {
+      url = "github:pgr0ss/vimux-ruby-test";
       flake = false;
     };
   };
