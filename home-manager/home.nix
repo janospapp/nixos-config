@@ -9,7 +9,6 @@
 
     stateVersion = "24.05";
     packages = with pkgs; [
-      firefox
       kitty
       nordic
       papirus-icon-theme
@@ -24,6 +23,16 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+    };
+
+    firefox = {
+      enable = true;
+      profiles.janos = {
+        extensions = with inputs.firefox-addons.packages.${system}; [
+          bitwarden
+          ublock-origin
+        ];
+      };
     };
 
     git = {
@@ -50,7 +59,7 @@
 
       settings = {
         enabled_layouts = "splits:split_axis:vertical, grid";
-        font_size = "18.0";
+        font_size = "12.0";
         scrollback_lines = "10000";
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
