@@ -11,8 +11,11 @@
     packages = with pkgs; [
       kitty
       nordic
+      obsidian
       papirus-icon-theme
+      slack
       spotify
+      teams-for-linux
       tmux
     ] ++ localPackages;
   };
@@ -30,8 +33,14 @@
       profiles.janos = {
         extensions = with inputs.firefox-addons.packages.${system}; [
           bitwarden
+          plasma-integration
           ublock-origin
         ];
+
+        settings = {
+          "widget.use-xdg-desktop-portal.file-picker" = 1;
+          "widget.use-xdg-desktop-portal.mime-handler" = 1;
+        };
       };
     };
 
@@ -277,6 +286,13 @@
           file = "p10k.zsh";
         }
       ];
+    };
+  };
+
+  services = {
+    syncthing = {
+      enable = true;
+      tray.enable = true;
     };
   };
 }
