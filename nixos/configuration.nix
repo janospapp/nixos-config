@@ -3,8 +3,9 @@
 # and in the NixOS manual (accessible by running `nixos-help`).
 
 { inputs, outputs, hardware, config, lib, pkgs, ... }:
-
-{
+let
+  username = outputs.username;
+in {
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -69,6 +70,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Configure distrobox
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+
   nixpkgs = {
     overlays = [
       outputs.overlays.vim-plugins
@@ -86,8 +93,13 @@
   programs.zsh.enable = true;
   programs.dconf.enable = true;
 
+  programs.nh = {
+    enable = true;
+    flake = "/home/${username}/nixos-config";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.janos = {
+  users.users.${username} = {
     isNormalUser = true;
     initialPassword = "P@ssw0rd";
     extraGroups = [ "wheel" "scanner" ]; # Enable ‘sudo’ for the user.
@@ -98,6 +110,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     curl
+    distrobox
     direnv
     fzf
     gnome.simple-scan

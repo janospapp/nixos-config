@@ -61,7 +61,7 @@
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.extraSpecialArgs = { inherit inputs outputs system; };
-          home-manager.users.janos = import ./home-manager/home.nix;
+          home-manager.users.${self.username} = import ./home-manager/home.nix;
           home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
         }
       ] ++ extraModules;
@@ -71,6 +71,8 @@
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
     overlays = import ./overlays { inherit inputs; };
+
+    username = "janos";
 
     nixosConfigurations = {
       virtualbox = generateOsConfig {

@@ -1,14 +1,18 @@
-{ inputs, outputs, system, pkgs, ... }: {
+{ inputs, outputs, system, pkgs, ... }:
+let
+  username = outputs.username;
+in {
   home = let
     localPackages = with outputs.packages.${system}; [
       plasma-panel-templates
     ];
   in {
-    username = "janos";
-    homeDirectory = "/home/janos";
+    inherit username;
+    homeDirectory = "/home/${username}";
 
     stateVersion = "24.05";
     packages = with pkgs; [
+      devenv
       kitty
       nordic
       obsidian
@@ -30,7 +34,7 @@
 
     firefox = {
       enable = true;
-      profiles.janos = {
+      profiles.${username} = {
         extensions = with inputs.firefox-addons.packages.${system}; [
           bitwarden
           plasma-integration
