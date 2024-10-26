@@ -74,6 +74,7 @@ in {
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
   };
 
   nixpkgs = {
@@ -114,6 +115,7 @@ in {
     direnv
     fzf
     gnome.simple-scan
+    podman-compose
     ripgrep
     tree
     vim
