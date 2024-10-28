@@ -271,6 +271,13 @@ point.
 I stop here, don't debug it further. (Maybe creating a new project with bundix wasn't a good idea
 after all. Or I missed a crucial step somewhere.)
 
+**Update**: On a repeated attempt, I could set up a project with bundix, but I couldn't reproduce it
+in a followup attempt. I definitely needed to set the `foruce_ruby_platform` option for bundler. I
+stop experimenting with `bundix` for now, as I realized that I might not even need it. It's useful
+when you want to build your rails app as a nix package (to run CI on, or deploy on a server with nix,
+etc.) For standard development using bundler in a normal ruby dev shell should be enough.
+
+
 # Devenv
 
 From all options setting up [devenv](https://devenv.sh) was the simplest (required the least knowledge
