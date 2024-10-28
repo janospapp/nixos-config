@@ -115,6 +115,7 @@ in {
     direnv
     fzf
     gnome.simple-scan
+    libreoffice
     podman-compose
     ripgrep
     tree

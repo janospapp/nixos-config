@@ -17,6 +17,7 @@ in {
       nordic
       obsidian
       papirus-icon-theme
+      pinta
       slack
       spotify
       teams-for-linux

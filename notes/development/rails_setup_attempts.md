@@ -126,7 +126,7 @@ The above flake exposes a standard ruby environment, so we can install the `rail
 It installs the gems and bin stubs in `~/.local/share/gem/ruby/3.3.0`, so we can
 generate our rails project with
 ```shell
-~/.local/share/gem/ruby/3.3.0/bin/rails new . -d postgresql -T -c tailwind
+> ~/.local/share/gem/ruby/3.3.0/bin/rails new . -d postgresql -T -c tailwind
 ```
 
 **Note**: After the rails project is generated (which initializes a git repository), nix will
@@ -271,6 +271,104 @@ point.
 I stop here, don't debug it further. (Maybe creating a new project with bundix wasn't a good idea
 after all. Or I missed a crucial step somewhere.)
 
-## Devenv
+# Devenv
 
-To be continued ...
+From all options setting up [devenv](https://devenv.sh) was the simplest (required the least knowledge
+about how a ruby project and postgres is set up). Its goal is to provide an easy to use interface to
+quickly spin up standard development and runtime environments.
+
+## Setup
+
+We just need to follow the [official guides](https://devenv.sh/guides/using-with-flakes) to create
+a flake based environment:
+```shell
+> nix flake init --template github:cachix/devenv
+```
+It creates a basic `.envrc` for direnv and a `flake` where we can configure our environment. It
+sets default inputs, following their own `nixpkgs` (I don't know how trustworthy these are and how
+they differ from the official `nixpkgs` repo). Lot of people seem to trust this source, so let's roll
+with it for this exercise.
+
+Then we can fill in the flake details from their [ruby on rails example](https://github.com/cachix/devenv/blob/main/examples/rubyonrails/devenv.nix).
+I removed bits here and there (we won't have the `blog` folder for our rails project, we don't need
+git, nor redis at this point). I enabled direnv in the folder, which failed on certain ruby dependencies
+and suggesting to add [nixpkgs-ruby]()
+
+I ended up having this flake:
+```
+{
+  inputs = {
+    nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
+    systems.url = "github:nix-systems/default";
+    devenv.url = "github:cachix/devenv";
+    devenv.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-ruby = {
+      url = "github:bobvanderlinden/nixpkgs-ruby";
+      inputs = { nixpkgs.follows = "nixpkgs"; };
+    };
+  };
+
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
+  };
+
+  outputs = { self, nixpkgs, devenv, systems, ... } @ inputs:
+    let
+      forEachSystem = nixpkgs.lib.genAttrs (import systems);
+    in
+    {
+      packages = forEachSystem (system: {
+        devenv-up = self.devShells.${system}.default.config.procfileScript;
+      });
+
+      devShells = forEachSystem
+        (system:
+          let
+            pkgs = nixpkgs.legacyPackages.${system};
+          in
+          {
+            default = devenv.lib.mkShell {
+              inherit inputs pkgs;
+              modules = [
+                {
+                  languages.ruby.enable = true;
+                  languages.ruby.version = "3.3.5";
+
+                  packages = [
+                    pkgs.openssl
+                    pkgs.libyaml
+                    pkgs.curl
+                  ];
+
+                  services.postgres.enable = true;
+
+                  processes.rails.exec = "rails server";
+
+                  enterShell = ''
+                    export PATH="$DEVENV_ROOT/bin:$PATH"
+                  '';
+                }
+              ];
+            };
+          });
+    };
+}
+```
+
+## Install rails
+
+At this point we have a shell with ruby installed in it. We can install the rails gem which can
+even build the native dependencies. After the install we can simply run the `rails` command.
+```shell
+> gem install rails
+> rails new . -d postgresql -T -c tailwind
+```
+There will be a conflict in the `.gitignore` file. You can simply override it with the rails one
+and then add back `.devenv`.
+
+## Running the server
+
+When everything is installed, you can simply run `devenv up` which starts the rails server and
+postgres with a nice TUI. After creating the database with `rails db:migrate` visit localhost:3000
+and you see the rails welcome page.
