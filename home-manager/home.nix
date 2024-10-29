@@ -168,6 +168,7 @@ in {
         set nowrap
         set encoding=utf8
         colorscheme nord
+        highlight Visual ctermfg=NONE
 
         " NERDTree configuration
         nmap <C-n> :NERDTreeToggle<CR>
