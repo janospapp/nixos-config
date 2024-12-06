@@ -10,7 +10,7 @@ in {
     inherit username;
     homeDirectory = "/home/${username}";
 
-    stateVersion = "24.05";
+    stateVersion = "24.11";
     packages = with pkgs; [
       devenv
       kitty

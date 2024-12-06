@@ -2,10 +2,10 @@
   description = "NixOS system configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -51,7 +51,7 @@
 
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    generateOsConfig = { system, hardware, extraModules ? [] }: nixpkgs.lib.nixosSystem {
+    generateOsConfig = { system, hardware ? "empty", extraModules ? [] }: nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit inputs outputs system hardware; };
 
@@ -75,11 +75,6 @@
     username = "janos";
 
     nixosConfigurations = {
-      virtualbox = generateOsConfig {
-        system = "x86_64-linux";
-        hardware = "virtualbox";
-      };
-
       old-hp = generateOsConfig {
         system = "x86_64-linux";
         hardware = "old-hp";
@@ -91,7 +86,6 @@
 
       dell-xps = generateOsConfig {
         system = "x86_64-linux";
-        hardware = "dell-xps";
         extraModules = [
           ./nixos/hardware/disko/standard.nix
           disko.nixosModules.disko
