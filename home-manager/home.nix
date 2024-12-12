@@ -251,8 +251,8 @@ in {
 
       shellAliases = {
         k = "kubectl";
-        dcu = "docker-compose up -d";
-        dcd = "docker-compose down";
+        dcu = "podman-compose up -d";
+        dcd = "podman-compose down";
         bopen = "bundle open";
         bclean = "bundle pristine";
       };

@@ -51,7 +51,7 @@
 
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    generateOsConfig = { system, hardware ? "empty", extraModules ? [] }: nixpkgs.lib.nixosSystem {
+    generateOsConfig = { system, hardware, extraModules ? [] }: nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit inputs outputs system hardware; };
 
@@ -86,6 +86,7 @@
 
       dell-xps = generateOsConfig {
         system = "x86_64-linux";
+        hardware = "dell-xps";
         extraModules = [
           ./nixos/hardware/disko/standard.nix
           disko.nixosModules.disko
