@@ -212,15 +212,15 @@
     "vimux-ruby-test": {
       "flake": false,
       "locked": {
-        "lastModified": 1503003138,
-        "narHash": "sha256-3pyZfSRPOcjNyFtu49G2WTZEQTATygB/koJnUO258Rk=",
-        "owner": "pgr0ss",
+        "lastModified": 1734354707,
+        "narHash": "sha256-Eu1lyVAZsdhCyFee7j/iTFlBdfIEM/kc97HhDKq/o5k=",
+        "owner": "janospapp",
         "repo": "vimux-ruby-test",
-        "rev": "3e478b0a9136335cfa059c16c4ea340c17d8c1ab",
+        "rev": "24b5df46c19933657410fc73e981035e29774ada",
         "type": "github"
       },
       "original": {
-        "owner": "pgr0ss",
+        "owner": "janospapp",
         "repo": "vimux-ruby-test",
         "type": "github"
       }

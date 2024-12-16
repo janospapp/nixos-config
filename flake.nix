@@ -36,7 +36,7 @@
       flake = false;
     };
     vimux-ruby-test = {
-      url = "github:pgr0ss/vimux-ruby-test";
+      url = "github:janospapp/vimux-ruby-test";
       flake = false;
     };
   };
