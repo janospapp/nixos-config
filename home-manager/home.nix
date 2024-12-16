@@ -103,6 +103,7 @@ in {
       mouse = true;
       prefix = "C-a";
       terminal = "screen-256color";
+      tmuxp.enable = true;
 
       extraConfig = ''
         bind | split-window -h -c "#{pane_current_path}"
