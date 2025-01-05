@@ -114,7 +114,7 @@ in {
     distrobox
     direnv
     fzf
-    gnome.simple-scan
+    simple-scan
     libreoffice
     podman-compose
     ripgrep

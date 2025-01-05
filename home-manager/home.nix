@@ -57,7 +57,7 @@ in {
 
     kitty = {
       enable = true;
-      theme = "Nord";
+      themeFile = "Nord";
 
       keybindings = {
         "kitty_mod+e" = "launch --location=vsplit --cwd=current";
