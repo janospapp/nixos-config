@@ -10,10 +10,17 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = hardware; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = hardware;
+    networkmanager = {
+      enable = true;
+      dns = "none";
+    };
+    nameservers = [
+      "192.168.50.101"
+      "9.9.9.9"
+    ];
+  };
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
