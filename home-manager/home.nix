@@ -251,11 +251,12 @@ in {
       defaultKeymap = "viins";
 
       shellAliases = {
-        k = "kubectl";
-        dcu = "podman-compose up -d";
-        dcd = "podman-compose down";
-        bopen = "bundle open";
         bclean = "bundle pristine";
+        be = "bundle exec";
+        bopen = "bundle open";
+        dcd = "podman-compose down";
+        dcu = "podman-compose up -d";
+        k = "kubectl";
       };
 
       initExtra = ''
