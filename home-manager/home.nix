@@ -13,6 +13,7 @@ in {
     stateVersion = "24.11";
     packages = with pkgs; [
       devenv
+      inkscape
       kitty
       nordic
       obsidian
