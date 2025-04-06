@@ -48,20 +48,21 @@
       "aarch64-linux"
       "x86_64-linux"
     ];
+    username = "janos";
 
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
     generateOsConfig = { system, hardware, extraModules ? [] }: nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs outputs system hardware; };
+      specialArgs = { inherit inputs outputs system hardware username; };
 
       modules = [
         ./nixos/configuration.nix
         ./nixos/hardware/${hardware}.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
-          home-manager.extraSpecialArgs = { inherit inputs outputs system; };
-          home-manager.users.${self.username} = import ./home-manager/home.nix;
+          home-manager.extraSpecialArgs = { inherit inputs outputs system username; };
+          home-manager.users.${username} = import ./home-manager/home.nix;
           home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
         }
       ] ++ extraModules;
@@ -71,8 +72,6 @@
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
     overlays = import ./overlays { inherit inputs; };
-
-    username = "janos";
 
     nixosConfigurations = {
       old-hp = generateOsConfig {

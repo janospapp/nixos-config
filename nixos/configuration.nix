@@ -2,10 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ inputs, outputs, hardware, config, lib, pkgs, ... }:
-let
-  username = outputs.username;
-in {
+{ inputs, outputs, hardware, config, lib, pkgs, username, ... }:
+{
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -22,9 +20,6 @@ in {
     ];
   };
 
-  # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -40,7 +35,7 @@ in {
   # };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
 
   # Enable the KDE Desktop Environment.
@@ -91,15 +86,10 @@ in {
 
     config = {
       allowUnfree = true;
-      #allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      #  "google-chrome"
-      #  "spotify"
-      #];
     };
   };
 
   programs.zsh.enable = true;
-  programs.dconf.enable = true;
 
   programs.nh = {
     enable = true;
