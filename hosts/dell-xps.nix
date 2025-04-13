@@ -8,6 +8,7 @@
   desktop.enable = true;
   users = {
     username = "janos";
+    name = "Janos Papp";
     email = "papp.janos.90@gmail.com";
   };
   system = {

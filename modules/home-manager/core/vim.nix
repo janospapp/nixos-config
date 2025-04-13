@@ -1,6 +1,8 @@
-{ pkgs, programs, ... }:
-{
-  programs.vim = {
+{ config, pkgs, ... }:
+let
+  username = config.users.username;
+in {
+  home-manager.users.${username}.programs.vim = {
     enable = true;
     defaultEditor = true;
 

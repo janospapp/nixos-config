@@ -1,10 +1,10 @@
-{ config, programs, ... }:
+{ config, ... }:
 let
   username = config.users.username;
 in {
-  programs.git = {
+  home-manager.users.${username}.programs.git = {
     enable = true;
-    userName = username;
+    userName = config.users.name;
     userEmail = config.users.email;
   };
 }

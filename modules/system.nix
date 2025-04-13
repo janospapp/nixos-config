@@ -11,6 +11,7 @@
     ./desktop.nix
     ./nixos/configuration.nix
     ./users.nix
+    ./home-manager/home.nix
   ];
 
   options.system = {

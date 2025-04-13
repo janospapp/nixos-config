@@ -7,9 +7,6 @@ in {
     ./core
   ];
 
-  home-manager.extraSpecialArgs = {
-    programs = config.home-manager.users.${username}.programs;
-  };
   home-manager.users.${username} = {
     home = let
       localPackages = with outputs.packages.${system}; [
@@ -20,15 +17,13 @@ in {
       homeDirectory = "/home/${username}";
 
       stateVersion = config.system.stateVersion;
-      packages = with pkgs; lib.mkMerge [
-        (lib.mkIf desktopEnabled [
-          inkscape
-          nordic
-          obsidian
-          papirus-icon-theme
-          pinta
-          spotify
-        ])
+      packages = with pkgs; [
+        inkscape
+        nordic
+        obsidian
+        papirus-icon-theme
+        pinta
+        spotify
         teams-for-linux
         slack
         devenv
