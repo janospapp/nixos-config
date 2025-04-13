@@ -1,10 +1,10 @@
 { config, lib, inputs, outputs, system, ... }:
 {
   imports = [
-    inputs.home-manager.nixosModules.home-manager {
+    inputs.home-manager.nixosModules.home-manager
+    {
       home-manager.useGlobalPkgs = true;
       home-manager.extraSpecialArgs = { inherit inputs outputs system; };
-      #home-manager.users.${config.users.username} = import ./home-manager/home.nix;
       home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
     }
     inputs.disko.nixosModules.disko
@@ -15,7 +15,7 @@
 
   options.system = {
     hostname = lib.mkOption {
-      type = lib.types.string;
+      type = lib.types.str;
       default = null;
       description = "The hostname of the system";
     };

@@ -3,6 +3,13 @@ let
   username = config.users.username;
   desktopEnabled = config.desktop.enable;
 in {
+  imports = [
+    ./core
+  ];
+
+  home-manager.extraSpecialArgs = {
+    programs = config.home-manager.users.${username}.programs;
+  };
   home-manager.users.${username} = {
     home = let
       localPackages = with outputs.packages.${system}; [
@@ -13,16 +20,18 @@ in {
       homeDirectory = "/home/${username}";
 
       stateVersion = config.system.stateVersion;
-      packages = with pkgs; [
-        devenv
-        inkscape
-        nordic
-        obsidian
-        papirus-icon-theme
-        pinta
-        slack
-        spotify
+      packages = with pkgs; lib.mkMerge [
+        (lib.mkIf desktopEnabled [
+          inkscape
+          nordic
+          obsidian
+          papirus-icon-theme
+          pinta
+          spotify
+        ])
         teams-for-linux
+        slack
+        devenv
       ] ++ localPackages;
     };
 
@@ -63,7 +72,7 @@ in {
         enable = true;
         nix-direnv.enable = true;
       };
-    } // desktopConfig // import ./core pkgs;
+    } // desktopConfig;
 
     services = {
       syncthing = {
