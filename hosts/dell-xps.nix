@@ -1,0 +1,16 @@
+{ inputs, ... }:
+{
+  imports = [
+    ../modules/nixos/hardware/disko/standard.nix
+    inputs.nixos-hardware.nixosModules.dell-xps-13-9310
+  ];
+
+  desktop.enable = true;
+  users = {
+    username = "janos";
+    email = "papp.janos.90@gmail.com";
+  };
+  system = {
+    hostname = "dell-xps";
+  };
+}

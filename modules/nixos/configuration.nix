@@ -2,14 +2,17 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ inputs, outputs, hardware, config, lib, pkgs, username, ... }:
+{ inputs, outputs, config, lib, pkgs, username, ... }:
+let
+  username = config.users.username;
+in
 {
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking = {
-    hostName = hardware;
+    hostName = config.system.hostname;
     networkmanager = {
       enable = true;
       dns = "none";
@@ -34,13 +37,9 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-
   # Enable the KDE Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -51,26 +50,6 @@
     enable = true;
     drivers = [ pkgs.hplip ];
   };
-
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # Enable scanners
-  hardware.sane = {
-    enable = true;
-    extraBackends = [ pkgs.epkowa ];
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Configure distrobox
   virtualisation.podman = {
@@ -111,8 +90,6 @@
     distrobox
     direnv
     fzf
-    simple-scan
-    libreoffice
     podman-compose
     ripgrep
     tree
