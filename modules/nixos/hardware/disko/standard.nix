@@ -1,7 +1,7 @@
 {
   disko.devices = {
     disk = {
-      vdb = {
+      main = {
         device = "/dev/sda";
         type = "disk";
         content = {
@@ -24,7 +24,7 @@
               };
             };
             root = {
-              size = "50G";
+              size = "400G";
               content = {
                 type = "filesystem";
                 format = "ext4";
