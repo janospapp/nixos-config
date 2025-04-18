@@ -37,14 +37,6 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  # Enable the KDE Desktop Environment.
-  # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e,caps:escape";
-
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
@@ -90,6 +82,7 @@ in
     distrobox
     direnv
     fzf
+    nordic
     podman-compose
     ripgrep
     tree

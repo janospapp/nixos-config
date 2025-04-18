@@ -2,6 +2,17 @@
 let
   username = config.users.username;
   desktopEnabled = config.desktop.enable;
+  nordic = pkgs.nordic.overrideAttrs (old: {
+    srcs = [
+      (pkgs.fetchFromGitHub {
+        owner = "janospapp";
+        repo = "nordic";
+        rev = "8b64a7733dd3456e259bc8bd6d6b48df8df06259";
+        hash = "sha256-OF77tC650qI4qaOYCcQ3leO8wzz8mAvzvxAvrfLrxh0=";
+        name = "Nordic";
+      })
+    ];
+  });
 in {
   imports = [
     ./core
