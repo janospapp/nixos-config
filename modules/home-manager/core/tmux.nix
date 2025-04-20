@@ -1,8 +1,5 @@
-{ config, ... }:
-let
-  username = config.users.username;
-in {
-  home-manager.users.${username}.programs.tmux = {
+{
+  user.homeConfig.tmux = {
     enable = true;
     keyMode = "vi";
     mouse = true;

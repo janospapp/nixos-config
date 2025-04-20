@@ -4,7 +4,7 @@
 
 { inputs, outputs, config, lib, pkgs, username, ... }:
 let
-  username = config.users.username;
+  username = config.user.username;
 in
 {
   # Use the systemd-boot EFI boot loader.
@@ -37,12 +37,6 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  # Enable CUPS to print documents.
-  services.printing = {
-    enable = true;
-    drivers = [ pkgs.hplip ];
-  };
-
   # Configure distrobox
   virtualisation.podman = {
     enable = true;
@@ -51,10 +45,6 @@ in
   };
 
   nixpkgs = {
-    overlays = [
-      outputs.overlays.vim-plugins
-    ];
-
     config = {
       allowUnfree = true;
     };
@@ -67,22 +57,12 @@ in
     flake = "/home/${username}/nixos-config";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${username} = {
-    isNormalUser = true;
-    initialPassword = "P@ssw0rd";
-    extraGroups = [ "wheel" "scanner" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     curl
     distrobox
-    direnv
     fzf
-    nordic
     podman-compose
     ripgrep
     tree
@@ -110,11 +90,6 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
@@ -123,6 +98,5 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
-  # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

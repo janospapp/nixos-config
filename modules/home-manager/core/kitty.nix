@@ -1,8 +1,5 @@
-{ config, ... }:
-let
-  username = config.users.username;
-in {
-  home-manager.users.${username}.programs.kitty = {
+{
+  user.homeConfig.kitty = {
     enable = true;
     themeFile = "Nord";
 

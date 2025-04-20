@@ -1,8 +1,6 @@
-{ config, pkgs, ... }:
-let
-  username = config.users.username;
-in {
-  home-manager.users.${username}.programs.zsh = {
+{ pkgs, ... }:
+{
+  user.homeConfig.zsh = {
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;

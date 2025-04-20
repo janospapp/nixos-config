@@ -1,0 +1,45 @@
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.user;
+in {
+  options.user = {
+    username = lib.mkOption {
+      type = lib.types.str;
+      example = "johndoe";
+      description = "The username of the main user in the system.";
+    };
+
+    name = lib.mkOption {
+      type = lib.types.str;
+      example = "John Doe";
+      description = "The name of the main user in the system.";
+    };
+
+    email = lib.mkOption {
+      type = lib.types.str;
+      example = "johndoe@example.com";
+      description = "The email address of the main user in the system.";
+    };
+
+    homePackages = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      example = "with pkgs; [slack spotify]";
+      default = [];
+      description = "What packages to install in the user space through Home Manager.";
+    };
+
+    homeConfig = lib.mkOption {
+      type = lib.types.attrs;
+      description = "Parts of the user's Home Manager config.";
+    };
+  };
+
+  config = {
+    users.users.${cfg.username} = {
+      isNormalUser = true;
+      initialPassword = "P@ssw0rd"; # Define a user account. Don't forget to set a password with ‘passwd’.
+      extraGroups = [ "wheel" "scanner" ];
+      shell = pkgs.zsh;
+    };
+  };
+}

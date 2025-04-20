@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
-let
-  username = config.users.username;
-in {
-  home-manager.users.${username}.programs.vim = {
+{ config, pkgs, outputs, ... }:
+{
+  nixpkgs.overlays = [ outputs.overlays.vim-plugins ];
+
+  user.homeConfig.vim = {
     enable = true;
     defaultEditor = true;
 

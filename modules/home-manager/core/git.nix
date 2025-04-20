@@ -1,10 +1,8 @@
 { config, ... }:
-let
-  username = config.users.username;
-in {
-  home-manager.users.${username}.programs.git = {
+{
+  user.homeConfig.git = {
     enable = true;
-    userName = config.users.name;
-    userEmail = config.users.email;
+    userName = config.user.name;
+    userEmail = config.user.email;
   };
 }

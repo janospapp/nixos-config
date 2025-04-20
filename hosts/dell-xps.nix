@@ -6,7 +6,8 @@
   ];
 
   desktop.enable = true;
-  users = {
+  development.enable = true;
+  user = {
     username = "janos";
     name = "Janos Papp";
     email = "papp.janos.90@gmail.com";
