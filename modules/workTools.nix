@@ -9,6 +9,10 @@ in {
   config = lib.mkIf cfg.enable {
     development.enable = lib.mkForce true;
     user.homePackages = with pkgs; [
+      awscli2
+      kubectl
+      kubectx
+      postman
       slack
       teams-for-linux
     ];
