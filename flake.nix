@@ -72,6 +72,12 @@
         hardware = "dell-xps";
         hostModule = ./hosts/dell-xps.nix;
       };
+
+      dell-xps-work = generateOsConfig {
+        system = "x86_64-linux";
+        hardware = "dell-xps";
+        hostModule = ./hosts/dell-xps-work.nix;
+      };
     };
   };
 }
