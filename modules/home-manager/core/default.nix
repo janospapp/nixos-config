@@ -3,7 +3,7 @@
     ./git.nix
     ./kitty.nix
     ./tmux.nix
-    ./vim.nix
+    ./vim
     ./zsh
   ];
 }

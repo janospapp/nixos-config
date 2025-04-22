@@ -2,6 +2,10 @@
 {
   nixpkgs.overlays = [ outputs.overlays.vim-plugins ];
 
+  home-manager.users.${config.user.username}.home = {
+    file.".vim/scripts/rails.vim".source = ./scripts/rails.vim;
+  };
+
   user.homeConfig.vim = {
     enable = true;
     defaultEditor = true;
@@ -29,7 +33,6 @@
       directory = [ "~/.vim/swp/" ];
       expandtab = true;
       ignorecase = true;
-      mouse = "a";
       number = true;
       relativenumber = true;
       shiftwidth = 2;
@@ -119,6 +122,9 @@
       Arpeggio noremap rtc :RunRubyFocusedContext<CR>
       Arpeggio noremap rtf :RunAllRubyTests<CR>
       Arpeggio noremap rta :VimuxRunCommand("rspec")<CR>
+
+      source $HOME/.vim/scripts/rails.vim
+      nmap gs :call rails#ToggleSpecFile()<CR>
     '';
   };
 }

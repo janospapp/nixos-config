@@ -1,54 +1,72 @@
-{ pkgs, ... }:
-{
-  user.homeConfig.zsh = {
-    enable = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    defaultKeymap = "viins";
-
-    shellAliases = {
-      bclean = "bundle pristine";
-      be = "bundle exec";
-      bopen = "bundle open";
-      dcd = "podman-compose down";
-      dcu = "podman-compose up -d";
-      k = "kubectl";
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.zsh;
+in {
+  options.zsh = {
+    extraRcParts = lib.mkOption {
+      type = lib.types.lines;
+      default = "";
+      description = ''
+        Sections of the final .zshrc file. Add items to the list, and
+        it will be concatenated at the end. Useful for custom key bindings
+        or function definitions from different modules.
+      '';
     };
+  };
 
-    initExtra = ''
-      zstyle ':completion:*' menu select
+  config = {
+    user.homeConfig.zsh = {
+      enable = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+      defaultKeymap = "viins";
 
-      bindkey -M viins '^l' end-of-line
+      shellAliases = {
+        bclean = "bundle pristine";
+        be = "bundle exec";
+        bopen = "bundle open";
+        dcd = "podman-compose down";
+        dcu = "podman-compose up -d";
+        k = "kubectl";
+      };
 
-      zmodload zsh/complist
-      bindkey -M menuselect '^h' vi-backward-char
-      bindkey -M menuselect '^j' vi-down-line-or-history
-      bindkey -M menuselect '^k' vi-up-line-or-history
-      bindkey -M menuselect '^l' vi-forward-char
-      bindkey -M menuselect '\t' accept-line
+      initExtra = ''
+        zstyle ':completion:*' menu select
 
-      setopt autocd nomatch notify
-      unsetopt beep
+        bindkey -M viins '^l' end-of-line
 
-      eval "$(direnv hook zsh)"
-    '';
+        zmodload zsh/complist
+        bindkey -M menuselect '^h' vi-backward-char
+        bindkey -M menuselect '^j' vi-down-line-or-history
+        bindkey -M menuselect '^k' vi-up-line-or-history
+        bindkey -M menuselect '^l' vi-forward-char
+        bindkey -M menuselect '\t' accept-line
 
-    plugins = [
-      {
-        name = "vi-mode";
-        src = pkgs.zsh-vi-mode;
-        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-      }
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
-        name = "powerlevel10k-config";
-        src = ./p10k-config;
-        file = "p10k.zsh";
-      }
-    ];
+        setopt autocd nomatch notify
+        unsetopt beep
+
+        ${cfg.extraRcParts}
+
+        eval "$(direnv hook zsh)"
+      '';
+
+      plugins = [
+        {
+          name = "vi-mode";
+          src = pkgs.zsh-vi-mode;
+          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+        }
+        {
+          name = "powerlevel10k";
+          src = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        }
+        {
+          name = "powerlevel10k-config";
+          src = ./p10k-config;
+          file = "p10k.zsh";
+        }
+      ];
+    };
   };
 }

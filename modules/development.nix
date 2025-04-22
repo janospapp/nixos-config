@@ -3,7 +3,7 @@ let
   cfg = config.development;
 in {
   options.development = {
-    enable = lib.mkEnableOption "workTools";
+    enable = lib.mkEnableOption "development";
   };
 
   config = lib.mkIf cfg.enable {
