@@ -11,6 +11,7 @@
     username = "janos";
     name = "Janos Papp";
     email = "papp.janos.90@gmail.com";
+    timeZone = "Europe/Budapest";
   };
   system = {
     hostname = "dell-xps";

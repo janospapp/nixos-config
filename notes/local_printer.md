@@ -15,3 +15,15 @@ selected the type and hpcups driver. Then the printer
 worked normally. Probably I can set up the printer from
 my NixOS config directly (`hardware.printers`), btut I didn't
 have the time to figure it out.
+
+## Printer is not detected
+
+At another installation KDE Printers couldn't detect the printer
+automatically. I tried to set the `ipps://` URI from a working
+setup, but it did not work. I also tried different combinations
+of the addres with static IP, but all attempts failed.
+
+Eventually I could add the printer using CLI:
+```
+lpadmin -p HP_M15w -E -v ipp://<printer IP>/ipp/print -m everywhere
+```

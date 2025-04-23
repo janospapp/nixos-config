@@ -21,6 +21,12 @@ in {
       description = "The email address of the main user in the system.";
     };
 
+    timeZone = lib.mkOption {
+      type = lib.types.str;
+      example = "Europe/London";
+      description = "The system time zone for the user.";
+    };
+
     homePackages = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       example = "with pkgs; [slack spotify]";

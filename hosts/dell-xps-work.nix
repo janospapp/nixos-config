@@ -11,6 +11,7 @@
     username = "janos";
     name = "Janos Papp";
     email = builtins.getEnv "WORK_EMAIL";
+    timeZone = "Europe/London";
   };
   system = {
     hostname = "dell-xps";
