@@ -48,23 +48,17 @@
       "aarch64-linux"
       "x86_64-linux"
     ];
+    username = "janos";
 
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    generateOsConfig = { system, hardware, extraModules ? [] }: nixpkgs.lib.nixosSystem {
+    generateOsConfig = { system, hardware, hostModule }: nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit inputs outputs system hardware; };
-
       modules = [
-        ./nixos/configuration.nix
-        ./nixos/hardware/${hardware}.nix
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.extraSpecialArgs = { inherit inputs outputs system; };
-          home-manager.users.${self.username} = import ./home-manager/home.nix;
-          home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
-        }
-      ] ++ extraModules;
+        ./modules/system.nix
+        hostModule
+      ];
     };
   in
   {
@@ -72,26 +66,17 @@
 
     overlays = import ./overlays { inherit inputs; };
 
-    username = "janos";
-
     nixosConfigurations = {
-      old-hp = generateOsConfig {
-        system = "x86_64-linux";
-        hardware = "old-hp";
-        extraModules = [
-          #./nixos/hardware/disko/standard.nix
-          #disko.nixosModules.disko
-        ];
-      };
-
       dell-xps = generateOsConfig {
         system = "x86_64-linux";
         hardware = "dell-xps";
-        extraModules = [
-          ./nixos/hardware/disko/standard.nix
-          disko.nixosModules.disko
-          nixos-hardware.nixosModules.dell-xps-13-9310
-        ];
+        hostModule = ./hosts/dell-xps.nix;
+      };
+
+      dell-xps-work = generateOsConfig {
+        system = "x86_64-linux";
+        hardware = "dell-xps";
+        hostModule = ./hosts/dell-xps-work.nix;
       };
     };
   };

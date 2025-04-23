@@ -2,7 +2,7 @@
 
 ## Local flake.nix missing from the store
 
-While I was experienting with direnv and different devShells or
+While I was experimenting with direnv and different devShells or
 devenv I got the following error:
 ```
 error: getting status of '/nix/store/xyz...-source/flake.nix': No such file or directory
