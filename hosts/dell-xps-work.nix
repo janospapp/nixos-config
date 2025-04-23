@@ -3,17 +3,6 @@
   imports = [
     ../modules/nixos/hardware/disko/standard.nix
     inputs.nixos-hardware.nixosModules.dell-xps-13-9310
+    inputs.private-modules.nixosModules.dell-xps-work
   ];
-
-  desktop.enable = true;
-  workTools.enable = true;
-  user = {
-    username = "janos";
-    name = "Janos Papp";
-    email = builtins.getEnv "WORK_EMAIL";
-    timeZone = "Europe/London";
-  };
-  system = {
-    hostname = "dell-xps";
-  };
 }

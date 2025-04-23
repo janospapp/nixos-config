@@ -147,6 +147,26 @@
         "type": "github"
       }
     },
+    "private-modules": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1745446553,
+        "narHash": "sha256-FDKorp+KyC0QvQlP0i3KDSV1Fk3xa+8KASt/8tzC7NI=",
+        "ref": "refs/heads/main",
+        "rev": "25bf180ecc53e35e39d1b60df6c2424ec419359d",
+        "revCount": 3,
+        "type": "git",
+        "url": "http://gitea.home/janos/nixos-config"
+      },
+      "original": {
+        "type": "git",
+        "url": "http://gitea.home/janos/nixos-config"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -155,6 +175,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "plasma-manager": "plasma-manager",
+        "private-modules": "private-modules",
         "vim-arpeggio": "vim-arpeggio",
         "vim-bundler": "vim-bundler",
         "vim-nerdtree-l-open-h-close": "vim-nerdtree-l-open-h-close",

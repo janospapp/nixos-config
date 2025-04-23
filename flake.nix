@@ -22,6 +22,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    private-modules = {
+      url = "git+http://gitea.home/janos/nixos-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Vim plugins
     vim-arpeggio = {
       url = "github:kana/vim-arpeggio";
