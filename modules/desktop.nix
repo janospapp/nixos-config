@@ -76,13 +76,25 @@ in
 
       plasma = {
         enable = true;
-        workspace.clickItemTo = "select";
 
-        configFile = {
-          kdeglobals = {
-            Icons.Theme = "Papirus-Dark";
-            KDE.LookAndFeelPackage = "Nordic-bluish";
-          };
+        input.keyboard = {
+          layouts = [
+            { layout = "us"; }
+            { layout = "hu"; }
+          ];
+          numlockOnStartup = "on";
+          options = [
+            "caps:escape_shifted_capslock"
+          ];
+        };
+
+        session = {
+          restoreOpenApplicationsOnLogin = "onLastLogout";
+        };
+
+        workspace = {
+          clickItemTo = "select";
+          lookAndFeel = "Nordic-bluish";
         };
       };
     };
