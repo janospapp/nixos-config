@@ -47,5 +47,26 @@ in {
       extraGroups = [ "wheel" "scanner" ];
       shell = pkgs.zsh;
     };
+
+    home-manager.users.${cfg.username} = {
+      home = {
+        username = cfg.username;
+        homeDirectory = "/home/${cfg.username}";
+
+        stateVersion = config.system.stateVersion;
+        packages = config.user.homePackages;
+      };
+
+      programs = {
+        home-manager.enable = true;
+      } // config.user.homeConfig;
+
+      services = {
+        syncthing = {
+          enable = true;
+          tray.enable = true;
+        };
+      };
+    };
   };
 }

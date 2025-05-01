@@ -1,19 +1,12 @@
 { config, lib, pkgs, inputs, system, ... }:
 let
   cfg = config.desktop;
-  nordic = pkgs.nordic.overrideAttrs (old: {
-    srcs = [
-      (pkgs.fetchFromGitHub {
-        owner = "janospapp";
-        repo = "nordic";
-        rev = "8b64a7733dd3456e259bc8bd6d6b48df8df06259";
-        hash = "sha256-OF77tC650qI4qaOYCcQ3leO8wzz8mAvzvxAvrfLrxh0=";
-        name = "Nordic";
-      })
-    ];
-  });
 in
 {
+  imports = [
+    ./plasma.nix
+  ];
+
   options = {
     desktop.enable = lib.mkEnableOption "Desktop";
   };
@@ -51,7 +44,6 @@ in
 
     user.homePackages = with pkgs; [
       inkscape
-      nordic
       obsidian
       pinta
       spotify
@@ -70,18 +62,6 @@ in
           settings = {
             "widget.use-xdg-desktop-portal.file-picker" = 1;
             "widget.use-xdg-desktop-portal.mime-handler" = 1;
-          };
-        };
-      };
-
-      plasma = {
-        enable = true;
-        workspace.clickItemTo = "select";
-
-        configFile = {
-          kdeglobals = {
-            Icons.Theme = "Papirus-Dark";
-            KDE.LookAndFeelPackage = "Nordic-bluish";
           };
         };
       };

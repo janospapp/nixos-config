@@ -8,10 +8,10 @@
       home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
     }
     inputs.disko.nixosModules.disko
-    ./home-manager/home.nix
     ./nixos/configuration.nix
-    ./desktop.nix
+    ./desktop
     ./development.nix
+    ./programs
     ./user.nix
     ./workTools.nix
   ];
