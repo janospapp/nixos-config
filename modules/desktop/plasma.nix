@@ -1,15 +1,21 @@
 { config, lib, pkgs, ... }:
 let
   nordic = pkgs.nordic.overrideAttrs (old: {
+    # It converts the .desktop files to .json to be compatible with plasma 6
     srcs = [
       (pkgs.fetchFromGitHub {
         owner = "janospapp";
         repo = "nordic";
-        rev = "aefd3c3c954f3342f4ed9bbfc0db5ef858cfabdd";
-        hash = "sha256-LlPnhmGffk/fKfU7j07RGNGFE+W/XHEEBkMguiGL6I8=";
+        rev = "a3f7242acd9b969b30213f93669ba47f2ebd9d5e";
+        hash = "sha256-L3HW5Kq1dI9XZzwI3AKORsxCFiAOwGNLqBOJ1lF8XYQ=";
         name = "Nordic";
       })
     ];
+
+    # I had to remove the deduplication, otherwise plasma didn't want to install
+    # the theme, as the files were linked outside of the folder. This seems to
+    # be a protection in plasma 6. With removing deduplication, I also removed the
+    # theme files for other desktops (i.e. gnome, cinammon, xfce, ...)
     installPhase = ''
       runHook preInstall
 
@@ -59,11 +65,26 @@ let
       runHook postInstall
     '';
   });
+
+  # Install only the `nord` variant of the theme
+  tela-nord-icons = pkgs.tela-icon-theme.overrideAttrs (old: {
+    installPhase = ''
+      runHook preInstall
+
+      patchShebangs install.sh
+      mkdir -p $out/share/icons
+      ./install.sh -d $out/share/icons nord
+
+      runHook postInstall
+    '';
+  });
 in
 {
   config = lib.mkIf config.desktop.enable {
     user.homePackages = [
       nordic
+      tela-nord-icons
+      pkgs.kora-icon-theme
     ];
 
     user.homeConfig = {
@@ -89,6 +110,7 @@ in
         workspace = {
           clickItemTo = "select";
           lookAndFeel = "Nordic-bluish";
+          iconTheme = "Tela-nord-dark";
         };
 
         panels = [
