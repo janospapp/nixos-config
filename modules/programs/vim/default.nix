@@ -3,7 +3,20 @@
   nixpkgs.overlays = [ outputs.overlays.vim-plugins ];
 
   home-manager.users.${config.user.username}.home = {
-    file.".vim/scripts/rails.vim".source = ./scripts/rails.vim;
+    file = {
+      ".vim/scripts" = {
+        source = ./scripts;
+        recursive = true;
+      };
+
+      # Hack to create the swp directory
+      ".vim/swp/.keep".source = builtins.toFile "keep" "";
+
+      ".vim/UltiSnips" = {
+        source = ./UltiSnips;
+        recursive = true;
+      };
+    };
   };
 
   user.homeConfig.vim = {

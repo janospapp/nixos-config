@@ -1,0 +1,161 @@
+#
+# Global functions
+#
+
+global !p
+
+
+# Utility functions
+#
+def snake_to_camel(name):
+    return ''.join(word.capitalize() for word in name.split('_'))
+
+
+def args_to_variables(arglist):
+    if arglist == None or len(arglist) == 0:
+        return []
+    args = str(arglist).split(',')
+    return list(map(lambda arg: arg.strip().replace(':', ' ').split(' ', 1)[0], args))
+
+def args_to_symbols(arglist, snip):
+    variables = args_to_variables(arglist)
+    if len(variables) > 0:
+        snip.rv = ":" + ", :".join(variables)
+
+def path_to_modules(snip):
+    directories = path.split('/')[:-1] + [snip.basename]
+
+    if directories[-1].endswith("_spec"):
+        directories[-1] = directories[-1][:-5]
+
+    if "app" in path:
+        idx = directories.index('app')
+        relevant_dirs = directories[idx + 2:]
+    elif "lib" in path:
+        idx = directories.index('lib')
+        relevant_dirs = directories[idx + 1:]
+    elif "spec" in path:
+        idx = directories.index('spec')
+        relevant_dirs = directories[idx + 2:]
+    else:
+        return [snake_to_camel(directories[-1])]
+
+    if "concerns" == relevant_dirs[0]:
+        relevant_dirs = relevant_dirs[1:]
+
+    return list(map(lambda name: snake_to_camel(name), relevant_dirs))
+
+def match_request_spec_path():
+    return re.search(r'.*spec/requests/(.*)/([^_]*)_(.*)_spec.rb', path)
+
+# Snippet functions
+#
+def write_instance_vars(arglist, snip):
+    for name in args_to_variables(arglist):
+        if name:
+            snip += '  @{} = {}'.format(name, name)
+        else:
+            snip += ''
+
+def write_modules(is_class, snip):
+    names = path_to_modules(snip)
+    for module_name in names[:-1]:
+        snip += "module " + module_name
+        snip.shift()
+    last = "class " if is_class else "module "
+    snip += last + names[-1]
+    snip += '  '
+
+def write_end_keywords(snip):
+    names = path_to_modules(snip)
+    for _ in range(len(names) - 1):
+        snip.shift()
+
+    while snip.indent:
+        snip += "end"
+        snip.unshift()
+    snip += "end"
+
+def current_class(snip):
+    names = path_to_modules(snip)
+    snip.rv = "::".join(names)
+
+def request_path(snip):
+    match = match_request_spec_path()
+    if match:
+        snip.rv = '/' + match.group(1) + '/' + match.group(3)
+    else:
+        snip.rv = ""
+
+def request_method(snip):
+    match = match_request_spec_path()
+    if match:
+        snip.rv = match.group(2)
+    else:
+        snip.rv = ""
+
+endglobal
+
+#
+# Snippets
+#
+snippet defi "def initialize ..." m
+def initialize($1)`!p write_instance_vars(t[1],snip)`$0
+end
+
+private
+
+attr_reader `!p args_to_symbols(t[1],snip)`
+endsnippet
+
+snippet "^class" "create class skeleton based on the current file" r
+# frozen_string_literal: true
+`!p write_modules(True, snip)`$0`!p write_end_keywords(snip)`
+endsnippet
+
+snippet "^mod" "create module skeleton based on the current file" r
+# frozen_string_literal: true
+`!p write_modules(False, snip)`$0`!p write_end_keywords(snip)`
+endsnippet
+
+snippet "^spec" "create the spec skeleton based on the current file" r
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe `!p current_class(snip)` do
+  subject(:$1) { described_class.new($2) }
+
+  $0
+end
+endsnippet
+
+snippet "^rswag" "create a request spec skeleton for rswag" r
+# frozen_string_literal: true
+
+require 'swagger_helper'
+
+RSpec.describe '`!p snip.rv = t[2]`' do
+  path '`!p request_path(snip)`' do
+    `!p request_method(snip)` '$1' do
+      tags '$2'
+      description '$3'
+      consumes 'application/json'
+      produces 'application/json'
+      security [bearer: []]
+
+      $4
+
+      response(200, 'successful request', use_as_request_example: true) do
+        include_context 'when real staff is logged in'
+
+        schema $5
+
+        run_test!
+      end
+
+      include_context 'with unauthenticated failure response'$0
+    end
+  end
+end
+endsnippet
