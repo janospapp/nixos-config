@@ -67,6 +67,16 @@ in {
           tray.enable = true;
         };
       };
+
+      # Needed only to start tmux by default at startup
+      xdg.desktopEntries.kitty = {
+        name = "kitty";
+        genericName = "Terminal emulator";
+        startupNotify = true;
+        exec = "kitty tmux";
+        icon = "kitty";
+        categories = ["System" "TerminalEmulator"];
+      };
     };
   };
 }

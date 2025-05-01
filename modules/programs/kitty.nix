@@ -4,13 +4,7 @@
     themeFile = "Nord";
 
     keybindings = {
-      "kitty_mod+e" = "launch --location=vsplit --cwd=current";
-      "kitty_mod+o" = "launch --location=hsplit --cwd=current";
-      "kitty_mod+t" = "new_tab_with_cwd";
-      "alt+up" = "neighboring_window up";
-      "alt+left" = "neighboring_window left";
-      "alt+right" = "neighboring_window right";
-      "alt+down" = "neighboring_window down";
+      "kitty_mod+t" = "new_tab_with_cwd tmux";
       "ctrl+page_down" = "next_tab";
       "ctrl+page_up" = "previous_tab";
     };

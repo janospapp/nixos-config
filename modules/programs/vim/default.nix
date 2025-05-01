@@ -53,8 +53,6 @@
     };
 
     extraConfig = ''
-      highlight ExtraWhitespace ctermbg=red guibg=darkgreen
-      match ExtraWhitespace /\s\+$\| \+\ze\t/
       set listchars=tab:>-
       set list
 
@@ -64,6 +62,8 @@
       set encoding=utf8
       colorscheme nord
       highlight Visual ctermfg=NONE
+      highlight ExtraWhitespace ctermbg=red guibg=darkgreen
+      match ExtraWhitespace /\s\+$\| \+\ze\t/
 
       " NERDTree configuration
       nmap <C-n> :NERDTreeToggle<CR>

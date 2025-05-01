@@ -8,7 +8,13 @@ in {
 
   config = lib.mkIf cfg.enable {
     user.homePackages = with pkgs; [
-      devenv
+      (ruby.withPackages (
+        ps: with ps; [
+          # Packages for LSP and linting in vim
+          solargraph
+          standard
+        ]
+      ))
     ];
 
     user.homeConfig = {
