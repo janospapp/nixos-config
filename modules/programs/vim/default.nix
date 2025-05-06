@@ -60,6 +60,7 @@
       filetype plugin indent on
       set nowrap
       set encoding=utf8
+      set tildeop
       colorscheme nord
       highlight Visual ctermfg=NONE
       highlight ExtraWhitespace ctermbg=red guibg=darkgreen
@@ -94,6 +95,9 @@
       nmap <C-b> :Buffers<CR>
       " Searching for the current word under the cursor
       nmap <leader>f :Rg \b<C-R><C-W>\b<CR>
+
+      " Breaking a line of arguments into multiple lines
+      nmap <leader>b mz:s/\((\\|,\)\s*/\1\r/g<CR>:s/)/\r)<CR>=ap`z
 
       " Toggling the quickfix window with Ctrl+x
       function! ToggleQuickFix()

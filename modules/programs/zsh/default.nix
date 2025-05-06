@@ -22,12 +22,14 @@ in {
       defaultKeymap = "viins";
 
       shellAliases = {
-        bclean = "bundle pristine";
         be = "bundle exec";
-        bopen = "bundle open";
-        dcd = "podman-compose down";
-        dcu = "podman-compose up -d";
+        pcd = "podman-compose down";
+        pcu = "podman-compose up -d";
+        pcs = "podman-compose -f docker-compose.yml start";
         k = "kubectl";
+        kg = "kubectl get";
+        kns = "kubens";
+        kcx = "kubectx";
       };
 
       initExtra = ''

@@ -107,6 +107,10 @@ in
           sessionRestore.restoreOpenApplicationsOnLogin = "onLastLogout";
         };
 
+        shortcuts = {
+          "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Alt+Shift";
+        };
+
         workspace = {
           clickItemTo = "select";
           lookAndFeel = "Nordic-bluish";
