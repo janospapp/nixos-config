@@ -99,6 +99,9 @@
       " Breaking a line of arguments into multiple lines
       nmap <leader>b mz:s/\((\\|,\)\s*/\1\r/g<CR>:s/)/\r)<CR>=ap`z
 
+      " Create the parent directory if it doesn't exist yet, before saving the file.
+      noremap <leader>w <Cmd>:call mkdir(expand("%:p:h"),"p")<CR>:w<CR>
+
       " Toggling the quickfix window with Ctrl+x
       function! ToggleQuickFix()
           if empty(filter(getwininfo(), 'v:val.quickfix'))
