@@ -20,8 +20,9 @@
           preferred://browser
           preferred://filemanager
           applications:org.kde.spectacle.desktop
+          applications:postman.desktop
+          applications:org.kde.kate.desktop
           applications:obsidian.desktop
-          # Only for work
           applications:teams-for-linux.desktop
           applications:slack.desktop
         ];
