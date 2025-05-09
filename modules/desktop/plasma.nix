@@ -103,6 +103,49 @@ in
           ];
         };
 
+        powerdevil = {
+          AC = {
+            autoSuspend.action = "nothing";
+            whenLaptopLidClosed = "lockScreen";
+            inhibitLidActionWhenExternalMonitorConnected = true;
+            turnOffDisplay = {
+              idleTimeout = 600;
+              idleTimeoutWhenLocked = 120;
+            };
+            powerProfile = "performance";
+          };
+          battery = {
+            autoSuspend.action = "nothing";
+            whenLaptopLidClosed = "lockScreen";
+            inhibitLidActionWhenExternalMonitorConnected = true;
+            turnOffDisplay = {
+              idleTimeout = 300;
+              idleTimeoutWhenLocked = 60;
+            };
+            powerProfile = "balanced";
+          };
+          lowBattery = {
+            autoSuspend.action = "nothing";
+            whenLaptopLidClosed = "lockScreen";
+            inhibitLidActionWhenExternalMonitorConnected = true;
+            turnOffDisplay = {
+              idleTimeout = 300;
+              idleTimeoutWhenLocked = 60;
+            };
+            dimDisplay = {
+              enable = true;
+              idleTimeout = 20;
+            };
+            displayBrightness = 60;
+            powerProfile = "powerSaving";
+          };
+          batteryLevels = {
+            lowLevel = 20;
+            criticalLevel = 5;
+            criticalAction = "hibernate";
+          };
+        };
+
         session = {
           sessionRestore.restoreOpenApplicationsOnLogin = "onLastLogout";
         };
