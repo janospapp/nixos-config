@@ -5,6 +5,7 @@
   height = 36;
   floating = true;
   hiding = "none";
+  screen = 0;
   widgets = [
     {
       appMenu = {

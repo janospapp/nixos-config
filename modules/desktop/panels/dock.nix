@@ -5,6 +5,7 @@
   height = 54;
   floating = true;
   hiding = "none";
+  screen = 0;
   widgets = [
     {
       kickoff = {
