@@ -1,6 +1,7 @@
 {
   user.homeConfig.tmux = {
     enable = true;
+    disableConfirmationPrompt = true;
     keyMode = "vi";
     mouse = true;
     prefix = "C-a";
@@ -23,6 +24,9 @@
       bind-key -T copy-mode-vi C-l select-pane -R
 
       bind-key -n 'C-Space' resize-pane -Z
+
+      set-option -g set-titles on
+      set-option -g set-titles-string '#W'
     '';
   };
 }

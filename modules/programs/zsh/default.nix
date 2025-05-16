@@ -23,13 +23,16 @@ in {
 
       shellAliases = {
         be = "bundle exec";
-        pcd = "podman-compose down";
-        pcu = "podman-compose up -d";
-        pcs = "podman-compose -f docker-compose.yml start";
         k = "kubectl";
         kg = "kubectl get";
         kns = "kubens";
         kcx = "kubectx";
+        pcd = "podman-compose down";
+        pcu = "podman-compose up -d";
+        pcs = "podman-compose -f docker-compose.yml start";
+        rails = "be rails";
+        rake = "be rake";
+        rspec = "be rspec";
       };
 
       initExtra = ''
