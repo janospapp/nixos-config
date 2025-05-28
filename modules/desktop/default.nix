@@ -53,7 +53,7 @@ in
       firefox = {
         enable = true;
         profiles.${config.user.username} = {
-          extensions = with inputs.firefox-addons.packages.${system}; [
+          extensions.packages = with inputs.firefox-addons.packages.${system}; [
             bitwarden
             plasma-integration
             ublock-origin

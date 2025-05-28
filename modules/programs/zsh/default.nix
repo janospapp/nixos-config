@@ -35,7 +35,7 @@ in {
         rspec = "be rspec";
       };
 
-      initExtra = ''
+      initContent = ''
         zstyle ':completion:*' menu select
 
         bindkey -M viins '^l' end-of-line
