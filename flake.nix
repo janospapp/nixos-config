@@ -57,9 +57,9 @@
 
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    generateOsConfig = { system, hardware, hostModule }: nixpkgs.lib.nixosSystem {
+    generateOsConfig = { system, hostModule }: nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs outputs system hardware; };
+      specialArgs = { inherit inputs outputs system; };
       modules = [
         ./modules/system.nix
         hostModule
@@ -74,14 +74,17 @@
     nixosConfigurations = {
       dell-xps = generateOsConfig {
         system = "x86_64-linux";
-        hardware = "dell-xps";
         hostModule = ./hosts/dell-xps.nix;
       };
 
       dell-xps-work = generateOsConfig {
         system = "x86_64-linux";
-        hardware = "dell-xps";
         hostModule = ./hosts/dell-xps-work.nix;
+      };
+
+      darter-pro-work = generateOsConfig {
+        system = "x86_64-linux";
+        hostModule = ./hosts/darter-pro-work.nix;
       };
     };
   };
