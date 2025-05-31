@@ -5,4 +5,6 @@
     inputs.nixos-hardware.nixosModules.system76-darp6
     inputs.private-modules.nixosModules.darter-pro-work
   ];
+
+  hardware.enableRedistributableFirmware = true;
 }
