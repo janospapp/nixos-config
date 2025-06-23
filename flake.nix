@@ -67,8 +67,6 @@
     };
   in
   {
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-
     overlays = import ./overlays { inherit inputs; };
 
     nixosConfigurations = {
@@ -87,5 +85,14 @@
         hostModule = ./hosts/darter-pro-work.nix;
       };
     };
+
+    packages.x86_64-linux.dellIso = let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
+      self.nixosConfigurations.dell-xps.config.system.build.isoImage;
   };
 }
