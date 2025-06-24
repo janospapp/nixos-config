@@ -8,7 +8,7 @@ let
 in
 {
   imports = [
-    "${modulesPath}/installer/cd-dvd/iso-image.nix"
+    "${modulesPath}/installer/cd-dvd/installation-cd-graphical-base.nix"
   ];
 
   # Use the systemd-boot EFI boot loader.
