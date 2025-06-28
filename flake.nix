@@ -75,11 +75,6 @@
         hostModule = ./hosts/dell-xps.nix;
       };
 
-      dell-xps-work = generateOsConfig {
-        system = "x86_64-linux";
-        hostModule = ./hosts/dell-xps-work.nix;
-      };
-
       darter-pro-work = generateOsConfig {
         system = "x86_64-linux";
         hostModule = ./hosts/darter-pro-work.nix;
