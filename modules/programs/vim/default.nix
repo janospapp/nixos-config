@@ -19,7 +19,7 @@
     };
   };
 
-  user.homeConfig.vim = {
+  user.homePrograms.vim = {
     enable = true;
     defaultEditor = true;
 

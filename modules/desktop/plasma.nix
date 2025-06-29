@@ -80,6 +80,10 @@ let
   });
 in
 {
+  imports = [
+    ./panels/dock.nix
+  ];
+
   config = lib.mkIf config.desktop.enable {
     user.homePackages = [
       nordic
@@ -87,7 +91,7 @@ in
       pkgs.kora-icon-theme
     ];
 
-    user.homeConfig = {
+    user.homePrograms = {
       plasma = {
         enable = true;
         overrideConfig = true;
@@ -161,7 +165,6 @@ in
         };
 
         panels = [
-          ./panels/dock.nix
           ./panels/topbar.nix
         ];
       };

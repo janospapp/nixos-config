@@ -1,5 +1,5 @@
 {
-  user.homeConfig.kitty = {
+  user.homePrograms.kitty = {
     enable = true;
     themeFile = "Nord";
 
@@ -21,6 +21,18 @@
 
     shellIntegration = {
       enableZshIntegration = true;
+    };
+  };
+
+  # Needed only to start tmux by default at startup
+  user.homeXdg = {
+    desktopEntries.kitty = {
+      name = "kitty";
+      genericName = "Terminal emulator";
+      startupNotify = true;
+      exec = "kitty tmux";
+      icon = "kitty";
+      categories = ["System" "TerminalEmulator"];
     };
   };
 }

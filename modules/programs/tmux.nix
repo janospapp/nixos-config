@@ -1,5 +1,5 @@
 {
-  user.homeConfig.tmux = {
+  user.homePrograms.tmux = {
     enable = true;
     disableConfirmationPrompt = true;
     keyMode = "vi";

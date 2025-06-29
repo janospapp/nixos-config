@@ -5,10 +5,24 @@ in
 {
   imports = [
     ./plasma.nix
+    ./firefox.nix
   ];
 
   options = {
-    desktop.enable = lib.mkEnableOption "Desktop";
+    desktop = {
+      enable = lib.mkEnableOption "Desktop";
+      dockLaunchers = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+        description = "The list of applications to show on the bottom dock.";
+        example = [
+          applications:systemsettings.desktop
+          applications:spotify.desktop
+          applications:kitty.desktop
+          preferred://browser
+        ];
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -48,23 +62,5 @@ in
       pinta
       spotify
     ];
-
-    user.homeConfig = {
-      firefox = {
-        enable = true;
-        profiles.${config.user.username} = {
-          extensions.packages = with inputs.firefox-addons.packages.${system}; [
-            bitwarden
-            plasma-integration
-            ublock-origin
-          ];
-
-          settings = {
-            "widget.use-xdg-desktop-portal.file-picker" = 1;
-            "widget.use-xdg-desktop-portal.mime-handler" = 1;
-          };
-        };
-      };
-    };
   };
 }

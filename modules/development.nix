@@ -17,7 +17,7 @@ in {
       ))
     ];
 
-    user.homeConfig = {
+    user.homePrograms = {
       direnv = {
         enable = true;
         nix-direnv.enable = true;

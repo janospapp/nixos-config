@@ -34,9 +34,14 @@ in {
       description = "What packages to install in the user space through Home Manager.";
     };
 
-    homeConfig = lib.mkOption {
+    homePrograms = lib.mkOption {
       type = lib.types.attrs;
-      description = "Parts of the user's Home Manager config.";
+      description = "The user's Home Manager program configurations.";
+    };
+
+    homeXdg = lib.mkOption {
+      type = lib.types.attrs;
+      description = "The user's Home Manager XDG configuration.";
     };
   };
 
@@ -59,7 +64,7 @@ in {
 
       programs = {
         home-manager.enable = true;
-      } // config.user.homeConfig;
+      } // config.user.homePrograms;
 
       services = {
         syncthing = {
@@ -68,15 +73,7 @@ in {
         };
       };
 
-      # Needed only to start tmux by default at startup
-      xdg.desktopEntries.kitty = {
-        name = "kitty";
-        genericName = "Terminal emulator";
-        startupNotify = true;
-        exec = "kitty tmux";
-        icon = "kitty";
-        categories = ["System" "TerminalEmulator"];
-      };
+      xdg = config.user.homeXdg;
     };
   };
 }

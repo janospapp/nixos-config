@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  user.homeConfig.git = {
+  user.homePrograms.git = {
     enable = true;
     userName = config.user.name;
     userEmail = config.user.email;

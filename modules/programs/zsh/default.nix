@@ -15,7 +15,7 @@ in {
   };
 
   config = {
-    user.homeConfig.zsh = {
+    user.homePrograms.zsh = {
       enable = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
