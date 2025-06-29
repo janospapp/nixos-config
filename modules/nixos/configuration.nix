@@ -56,11 +56,13 @@ in
     };
   };
 
-  programs.zsh.enable = true;
-
-  programs.nh = {
-    enable = true;
-    flake = "/home/${username}/nixos-config";
+  programs = {
+    nh = {
+      enable = true;
+      flake = "/home/${username}/nixos-config";
+    };
+    ssh.startAgent = true;
+    zsh.enable = true;
   };
 
   # List packages installed in system profile. To search, run:
