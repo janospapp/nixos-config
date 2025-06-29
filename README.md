@@ -32,8 +32,11 @@ This repository contains my personal (and work) NixOS configuration.
 ### Build custom ISO
 
 To build a bootable ISO from specific system configuration it must exist
-in the flake outputs (e.g. `packages.x86_64-linux.dellIso`). Then it can
-be built like any standard item from a flake, i.e.
+in the flake outputs (e.g. `packages.x86_64-linux.dellIso`). It also requires
+a special installer module to be imported in the system configuration. It
+is kept commented in [the configuration](./modules/nixos/configuration.nix),
+because otherwise it messes up normal system building. Once its uncommented
+the target can be built like any standard item from a flake, i.e.
 ```
 nix build .#packages.x86_64-linux.dellIso
 ```

@@ -8,7 +8,9 @@ let
 in
 {
   imports = [
-    "${modulesPath}/installer/cd-dvd/installation-cd-graphical-base.nix"
+    # Uncomment this module when creating an ISO. Otherwise keep it commented
+    # because it results in a non-bootable system when building the configuration.
+    # "${modulesPath}/installer/cd-dvd/installation-cd-graphical-base.nix"
   ];
 
   # Use the systemd-boot EFI boot loader.
