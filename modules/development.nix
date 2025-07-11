@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 let
   cfg = config.development;
 in {
@@ -15,6 +15,7 @@ in {
           standard
         ]
       ))
+      pkgs-unstable.claude-code
     ];
 
     user.homePrograms = {
