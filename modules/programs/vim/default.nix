@@ -145,6 +145,9 @@
 
       source $HOME/.vim/scripts/rails.vim
       nmap gs :call rails#ToggleSpecFile()<CR>
+
+      source $HOME/.vim/scripts/ai_panel.vim
+      nnoremap <silent> <leader>a :call g:ToggleAIPanel()<CR>
     '';
   };
 }
