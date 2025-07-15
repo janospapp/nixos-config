@@ -31,11 +31,13 @@
       fugitive
       fzf-vim
       nerdtree
+      nerdtree-git-plugin
       nerdtree-l-open-h-close
       nord-vim
       ultisnips
       vim-airline-themes
       vim-endwise
+      vim-signify
       vim-surround
       vim-tmux-navigator
       vimux
@@ -142,6 +144,16 @@
       Arpeggio noremap rtc :RunRubyFocusedContext<CR>
       Arpeggio noremap rtf :RunAllRubyTests<CR>
       Arpeggio noremap rta :VimuxRunCommand("rspec")<CR>
+
+      nnoremap <leader>c :SignifyHunkDiff<CR>
+      autocmd User SignifyHunk call s:show_current_hunk()
+
+      function! s:show_current_hunk() abort
+        let h = sy#util#get_hunk_stats()
+        if !empty(h)
+          echo printf('[Hunk %d/%d]', h.current_hunk, h.total_hunks)
+        endif
+      endfunction
 
       source $HOME/.vim/scripts/rails.vim
       nmap gs :call rails#ToggleSpecFile()<CR>
