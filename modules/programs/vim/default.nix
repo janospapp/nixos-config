@@ -114,6 +114,8 @@
       endfunction
 
       nnoremap <C-x> :call ToggleQuickFix()<CR>
+      vnoremap <leader>c "+y
+      nnoremap <leader>v :silent! set paste<CR>"+p:silent! set nopaste<CR>
 
       " Configure ALE options
       let g:ale_set_highlights = 0
