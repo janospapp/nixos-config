@@ -23,6 +23,8 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    nixarr.url = "github:rasmus-kirk/nixarr";
+
     private-modules = {
       url = "git+http://gitea.home/janos/nixos-config";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,6 +87,11 @@
       darter-pro-work = generateOsConfig {
         system = "x86_64-linux";
         hostModule = ./hosts/darter-pro-work.nix;
+      };
+
+      roxxy = generateOsConfig {
+        system = "x86_64-linux";
+        hostModule = ./hosts/roxxy.nix;
       };
     };
 
