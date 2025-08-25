@@ -12,6 +12,7 @@ let
       })
     ];
 
+    dontCheckForBrokenSymlinks = true;
     # I had to remove the deduplication, otherwise plasma didn't want to install
     # the theme, as the files were linked outside of the folder. This seems to
     # be a protection in plasma 6. With removing deduplication, I also removed the
@@ -68,6 +69,7 @@ let
 
   # Install only the `nord` variant of the theme
   tela-nord-icons = pkgs.tela-icon-theme.overrideAttrs (old: {
+    dontCheckForBrokenSymlinks = true;
     installPhase = ''
       runHook preInstall
 

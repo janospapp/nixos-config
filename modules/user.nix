@@ -49,7 +49,7 @@ in {
     users.users.${cfg.username} = {
       isNormalUser = true;
       initialPassword = "P@ssw0rd"; # Define a user account. Don't forget to set a password with ‘passwd’.
-      extraGroups = [ "wheel" "scanner" ];
+      extraGroups = [ "wheel" "scanner" "kvm" ];
       shell = pkgs.zsh;
     };
 

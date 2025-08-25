@@ -24,5 +24,11 @@ in {
         nix-direnv.enable = true;
       };
     };
+
+    networking.firewall = {
+      enable = true;
+      allowedTCPPorts = [ 19000 19001 8081 ];  # Add other ports Expo might use
+      allowedUDPPorts = [ 19000 19001 ];       # Optional, some parts of Expo may use UDP
+    };
   };
 }
