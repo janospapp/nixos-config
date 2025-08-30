@@ -1,9 +1,19 @@
 { pkgs, inputs, modulesPath, ... }:
+let
+  sshKeys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDEHWVUa8djH3H92jXHORARIf+2oFmotT2/TXYVEccK9"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE1yosmssktc9HzpCGkU+T3to6fwrxOyz7a9zJR0z6eZ"
+  ];
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.nixarr.nixosModules.default
   ];
+
+  networking.firewall = {
+    allowedTCPPorts = [ 80 ];
+  };
 
   nixarr = {
     enable = true;
@@ -34,13 +44,11 @@
       enable = true;
       openFirewall = true;
       group = "media";
+      profileDir = "/data/.state/qbittorrent/";
+      webuiPort = 8085;
     };
   };
 
-  users.users.janos.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDEHWVUa8djH3H92jXHORARIf+2oFmotT2/TXYVEccK9"
-  ];
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDEHWVUa8djH3H92jXHORARIf+2oFmotT2/TXYVEccK9"
-  ];
+  users.users.janos.openssh.authorizedKeys.keys = sshKeys;
+  users.users.root.openssh.authorizedKeys.keys = sshKeys;
 }
