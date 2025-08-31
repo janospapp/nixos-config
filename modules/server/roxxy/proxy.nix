@@ -5,6 +5,10 @@ let
         name = "jellyfin";
         port = 8096;
       }
+      {
+        name = "gitea";
+        port = config.services.gitea.settings.server.HTTP_PORT;
+      }
   ] ++ map (name: {
     inherit name;
     port = config.services.${name}.settings.server.port;

@@ -38,6 +38,8 @@ in
 
     gitea = {
       enable = true;
+      stateDir = "/data/.state/gitea/";
+      settings.server.HTTP_PORT = 9002;
     };
 
     qbittorrent = {
