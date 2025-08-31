@@ -12,7 +12,11 @@ in
   ];
 
   networking.firewall = {
-    allowedTCPPorts = [ 80 ];
+    # Open ports for services that don't open it automatically
+    #    80 - nginx, recerse proxy
+    #  2049 - NFS
+    allowedTCPPorts = [ 80 111 2049 ];
+    allowedUDPPorts = [ 111 2049 ];
   };
 
   nixarr = {
@@ -40,6 +44,16 @@ in
       enable = true;
       stateDir = "/data/.state/gitea/";
       settings.server.HTTP_PORT = 9002;
+    };
+
+    nfs.server = {
+      enable = true;
+      exports = ''
+        /export 192.168.50.0/24(rw,fsid=0,no_subtree_check)
+        /export/data1 192.168.50.0/24(rw,nohide,insecure,no_subtree_check)
+        /export/data2 192.168.50.0/24(rw,nohide,insecure,no_subtree_check)
+        /export/service_data 192.168.50.0/24(rw,nohide,insecure,no_subtree_check)
+      '';
     };
 
     qbittorrent = {

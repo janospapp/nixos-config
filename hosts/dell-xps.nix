@@ -1,7 +1,8 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ../modules/nixos/hardware/disko/standard.nix
+    ../modules/nixos/filesystems/dell-xps.nix
     inputs.nixos-hardware.nixosModules.dell-xps-13-9310
   ];
 

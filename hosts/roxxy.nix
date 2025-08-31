@@ -3,6 +3,7 @@
   imports = [
     ../modules/nixos/hardware/disko/server.nix
     ../modules/nixos/hardware/roxxy.nix
+    ../modules/nixos/filesystems/roxxy.nix
     ../modules/server/server.nix
     ../modules/server/roxxy/proxy.nix
   ];
