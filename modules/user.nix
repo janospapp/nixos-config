@@ -21,6 +21,13 @@ in {
       description = "The email address of the main user in the system.";
     };
 
+    uid = lib.mkOption {
+      type = lib.types.number;
+      default = 1000;
+      example = "1003";
+      description = "The user's UID. 1000 by default.";
+    };
+
     timeZone = lib.mkOption {
       type = lib.types.str;
       example = "Europe/London";
@@ -51,6 +58,7 @@ in {
       initialPassword = "P@ssw0rd"; # Define a user account. Don't forget to set a password with ‘passwd’.
       extraGroups = [ "wheel" "scanner" "kvm" ];
       shell = pkgs.zsh;
+      uid = cfg.uid;
     };
 
     home-manager.users.${cfg.username} = {
