@@ -10,6 +10,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [ "pcie_aspm=off" "pcie_port_pm=off" ];
 
   swapDevices = [ ];
 
