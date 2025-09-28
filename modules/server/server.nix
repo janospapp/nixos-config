@@ -25,6 +25,7 @@ in
     bazarr.enable = true;
     jellyfin.enable = true;
     jellyseerr.enable = true;
+    lidarr.enable = true;
     prowlarr.enable = true;
     radarr.enable = true;
     sonarr.enable = true;
@@ -44,6 +45,16 @@ in
       enable = true;
       stateDir = "/data/.state/gitea/";
       settings.server.HTTP_PORT = 9002;
+    };
+
+    navidrome = {
+      enable = true;
+      openFirewall = true;
+      group = "media";
+      settings = {
+        MusicFolder = "/mnt/data1/media/music";
+        DataFolder = "/data/.state/navidrome";
+      };
     };
 
     nfs.server = {

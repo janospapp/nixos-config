@@ -9,10 +9,14 @@ let
         name = "gitea";
         port = config.services.gitea.settings.server.HTTP_PORT;
       }
+      {
+        name = "navidrome";
+        port = config.services.navidrome.settings.Port;
+      }
   ] ++ map (name: {
     inherit name;
     port = config.services.${name}.settings.server.port;
-  }) [ "sonarr" "radarr" "prowlarr" ];
+  }) [ "sonarr" "radarr" "prowlarr" "lidarr" ];
 
   topDomain = "home2";
 in
