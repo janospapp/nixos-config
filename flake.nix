@@ -26,7 +26,7 @@
     nixarr.url = "github:rasmus-kirk/nixarr";
 
     private-modules = {
-      url = "git+http://gitea.home/janos/nixos-config";
+      url = "git+http://gitea.home2/janos/nixos-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

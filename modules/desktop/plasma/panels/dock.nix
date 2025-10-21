@@ -1,6 +1,9 @@
 { config, lib, ... }:
+let
+  cfg = config.desktop.plasma;
+in
 {
-  config = lib.mkIf config.desktop.enable {
+  config = lib.mkIf cfg.enable {
     home-manager.users.${config.user.username} = {
       programs = {
         plasma = {
@@ -21,7 +24,7 @@
                 }
                 {
                   iconTasks = {
-                    launchers = config.desktop.dockLaunchers;
+                    launchers = cfg.dockLaunchers;
                     appearance = {
                       showTooltips = true;
                       highlightWindows = true;

@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
 let
+  cfg = config.desktop.plasma;
+
   nordic = pkgs.nordic.overrideAttrs (old: {
     # It converts the .desktop files to .json to be compatible with plasma 6
     srcs = [
@@ -86,7 +88,24 @@ in
     ./panels/dock.nix
   ];
 
-  config = lib.mkIf config.desktop.enable {
+  options.desktop.plasma = {
+    enable = lib.mkEnableOption "Plasma KDE 6";
+    dockLaunchers = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "The list of applications to show on the bottom dock.";
+      example = [
+        applications:systemsettings.desktop
+        applications:spotify.desktop
+        applications:kitty.desktop
+        preferred://browser
+      ];
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    services.desktopManager.plasma6.enable = true;
+
     user.homePackages = [
       nordic
       tela-nord-icons
