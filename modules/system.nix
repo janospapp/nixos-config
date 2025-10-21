@@ -5,7 +5,7 @@
     {
       home-manager.useGlobalPkgs = true;
       home-manager.extraSpecialArgs = { inherit inputs outputs system; };
-      home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+      home-manager.sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
     }
     inputs.disko.nixosModules.disko
     ./nixos/configuration.nix
