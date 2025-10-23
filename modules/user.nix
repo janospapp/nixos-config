@@ -56,18 +56,23 @@ in {
     users.users.${cfg.username} = {
       isNormalUser = true;
       initialPassword = "P@ssw0rd"; # Define a user account. Don't forget to set a password with ‘passwd’.
-      extraGroups = [ "wheel" "scanner" "kvm" ];
+      extraGroups = [ "wheel" "scanner" "kvm" "input" ];
       shell = pkgs.zsh;
       uid = cfg.uid;
     };
 
     home-manager.users.${cfg.username} = {
+      fonts.fontconfig.enable = true;
+
       home = {
         username = cfg.username;
         homeDirectory = "/home/${cfg.username}";
 
         stateVersion = config.system.stateVersion;
-        packages = config.user.homePackages;
+        packages = with pkgs; [
+          nerd-fonts.noto
+          nerd-fonts.symbols-only
+        ] ++ config.user.homePackages;
       };
 
       programs = {

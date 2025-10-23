@@ -8,6 +8,7 @@
 
   desktop = {
     enable = true;
+    hyprland.enable = true;
     plasma = {
       enable = true;
       dockLaunchers = [

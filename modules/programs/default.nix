@@ -5,6 +5,7 @@
     ./kitty.nix
     ./tmux.nix
     ./vim
+    ./yazi.nix
     ./zsh
   ];
 }

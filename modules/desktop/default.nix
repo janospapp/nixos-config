@@ -1,10 +1,11 @@
-{ config, lib, pkgs, inputs, system, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.desktop;
 in
 {
   imports = [
     ./plasma
+    ./hyprland
     ./firefox.nix
   ];
 
