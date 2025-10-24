@@ -47,6 +47,8 @@ in {
         bindkey -M menuselect '^l' vi-forward-char
         bindkey -M menuselect '\t' accept-line
 
+        ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+
         setopt autocd nomatch notify
         unsetopt beep
 
