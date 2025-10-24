@@ -22,9 +22,8 @@ in
     };
     environment.systemPackages = with pkgs-unstable; [
       hyprland-protocols
-      networkmanagerapplet
+      hyprpanel
       rofi
-      waybar
     ];
   };
 }
