@@ -7,4 +7,8 @@
   ];
 
   hardware.enableRedistributableFirmware = true;
+  hardware.system76.darp6 = {
+    soundVendorId = "0x10ec0293";
+    soundSubsystemId = "0x15581404";
+  };
 }
