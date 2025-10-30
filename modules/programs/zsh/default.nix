@@ -49,8 +49,7 @@ in {
 
         ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
-        setopt autocd nomatch notify
-        unsetopt beep
+        setopt autocd nomatch notify nobeep noautoremoveslash
 
         ${cfg.extraRcParts}
 
