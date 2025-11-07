@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./hyprland.nix
+    ./hyprpanel.nix
     ./screenshot.nix
   ];
 
@@ -27,8 +28,7 @@ in
     };
     environment.systemPackages = with pkgs-unstable; [
       hyprland-protocols
-      hyprpanel
-      rofi # Application runner
+      rofi
       wl-clipboard
     ];
   };

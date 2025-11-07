@@ -17,6 +17,7 @@ in
 
   config = lib.mkIf cfg.enable {
     services.displayManager.sddm.enable = true;
+    services.displayManager.sddm.wayland.enable = true;
 
     # Enable CUPS to print documents.
     services.printing = {
