@@ -4,6 +4,7 @@ let
 in
 {
   imports = [
+    ./hypridle.nix
     ./hyprland.nix
     ./hyprpanel.nix
     ./screenshot.nix
