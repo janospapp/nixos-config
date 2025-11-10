@@ -228,12 +228,12 @@
           "1, monitor:$EXTERNAL_MONITOR_ID, persistent:true, on-created-empty: $terminal"
           "2, monitor:$EXTERNAL_MONITOR_ID, persistent:true, on-created-empty: $browser"
           "3, monitor:$EXTERNAL_MONITOR_ID, persistent:true"
-          "4, monitor:$EXTERNAL_MONITOR_ID, persistent:true"
-          "5, monitor:$EXTERNAL_MONITOR_ID, persistent:true"
+          "4, monitor:$EXTERNAL_MONITOR_ID"
+          "5, monitor:$EXTERNAL_MONITOR_ID"
           "6, monitor:eDP-1, persistent:true, on-created-empty: spotify"
           "7, monitor:eDP-1, persistent:true"
           "8, monitor:eDP-1, persistent:true"
-          "9, monitor:eDP-1, persistent:true"
+          "9, monitor:eDP-1"
         ];
 
         windowrulev2 = [

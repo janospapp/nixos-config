@@ -64,6 +64,7 @@
         # TODO: Remove this theme after upgrading to the latest stylix.
         # It supports hyprpanel theme only on unstable, not in 25.05
         theme.font.name = "NotoSans Nerd Font";
+        theme.font.size = "1rem";
         theme.font.label = "NotoSans Nerd Font Medium";
         theme.bar.menus.background = "#2e3440";
         theme.bar.background = "#2e3440";
