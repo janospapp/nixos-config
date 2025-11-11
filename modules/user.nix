@@ -46,6 +46,18 @@ in {
       description = "The user's Home Manager program configurations.";
     };
 
+    homeFiles = lib.mkOption {
+      type = lib.types.attrs;
+      description = "What user files to create with Home Manager";
+      example = ''
+        {
+          ".local/bin/test.sh" = {
+            text = "echo Hello World";
+          };
+        }
+      '';
+    };
+
     homeXdg = lib.mkOption {
       type = lib.types.attrs;
       description = "The user's Home Manager XDG configuration.";
@@ -72,12 +84,14 @@ in {
         packages = with pkgs; [
           nerd-fonts.noto
           nerd-fonts.symbols-only
-        ] ++ config.user.homePackages;
+        ] ++ cfg.homePackages;
+
+        file = cfg.homeFiles;
       };
 
       programs = {
         home-manager.enable = true;
-      } // config.user.homePrograms;
+      } // cfg.homePrograms;
 
       services = {
         syncthing = {
@@ -86,11 +100,14 @@ in {
         };
       };
 
-      xdg = config.user.homeXdg;
+      xdg = cfg.homeXdg;
+
+      stylix.targets.firefox.profileNames = [ cfg.username ];
     };
 
     stylix = {
       enable = true;
+      polarity = "dark";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     };
   };

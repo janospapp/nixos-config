@@ -71,6 +71,7 @@ in
     curl
     distrobox
     fzf
+    jq
     podman-compose
     ripgrep
     tree
