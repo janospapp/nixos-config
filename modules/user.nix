@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   cfg = config.user;
 in {
@@ -74,6 +74,10 @@ in {
     };
 
     home-manager.users.${cfg.username} = {
+      imports = [
+        inputs.nvf.homeManagerModules.default
+      ];
+
       fonts.fontconfig.enable = true;
 
       home = {

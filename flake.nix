@@ -12,6 +12,11 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
