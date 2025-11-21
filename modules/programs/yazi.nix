@@ -3,7 +3,7 @@
     enable = true;
     enableZshIntegration = true;
     keymap = {
-      manager.prepend_keymap = [
+      mgr.prepend_keymap = [
         {
           on = [ "<C-p>" ];
           run = "plugin fzf";
