@@ -12,12 +12,12 @@
 
         listener = [
           {
-            timeout = 300; # 5min
+            timeout = 600; # 10 min
             on-timeout = "~/.local/bin/is_video_playing.sh || loginctl lock-session"; # lock screen unless a video is playing
           }
           {
-            timeout = 480;                                              # 8min
-            on-timeout = "hyprctl dispatch dpms off";                   # screen off when timeout has passed
+            timeout = 900; # 15 min
+            on-timeout = "~/.local/bin/is_video_playing.sh || hyprctl dispatch dpms off"; # screen off when timeout has passed
             on-resume = "hyprctl dispatch dpms on && brightnessctl -r"; # screen on when activity is detected after timeout has fired.
           }
         ];
