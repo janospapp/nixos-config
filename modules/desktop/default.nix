@@ -26,9 +26,14 @@ in
     };
 
     # Enable scanners
-    hardware.sane = {
+    hardware.sane = let
+      # Override epkowa to use only the firmware for Epson Perfection V19
+      epkowaV19 = pkgs.epkowa.override {
+        plugins = { inherit (pkgs.epkowa.plugins) s650; };
+      };
+    in {
       enable = true;
-      extraBackends = [ pkgs.epkowa ];
+      extraBackends = [ epkowaV19 ];
     };
 
     environment.systemPackages = with pkgs; [

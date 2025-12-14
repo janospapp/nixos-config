@@ -1,7 +1,6 @@
 {
   user.homePrograms.keychain = {
     enable = true;
-    agents = ["ssh"];
     keys = [
       "id_ed25519"
       "id_ed25519_personal"

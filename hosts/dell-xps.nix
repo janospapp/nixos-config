@@ -9,19 +9,7 @@
   desktop = {
     enable = true;
     hyprland.enable = true;
-    plasma = {
-      enable = true;
-      dockLaunchers = [
-        applications:systemsettings.desktop
-        applications:spotify.desktop
-        applications:kitty.desktop
-        preferred://browser
-        preferred://filemanager
-        applications:org.kde.spectacle.desktop
-        applications:org.kde.kate.desktop
-        applications:obsidian.desktop
-      ];
-    };
+    plasma.enable = false;
   };
   development.enable = true;
   user = {

@@ -61,8 +61,8 @@
           "spotify"
         ];
 
-        # TODO: Remove this theme after upgrading to the latest stylix.
-        # It supports hyprpanel theme only on unstable, not in 25.05
+        # Use these overrides instead of stylix, as the stylix one is different from the Nord theme
+        # provided by Hyprpanel itself, and I like these colors better.
         theme.font.name = "NotoSans Nerd Font";
         theme.font.size = "1rem";
         theme.font.label = "NotoSans Nerd Font Medium";
@@ -442,6 +442,16 @@
         theme.bar.buttons.workspaces.smartHighlight = true;
         theme.bar.buttons.windowtitle.enableBorder = false;
       };
+    };
+
+    home-manager.users.${config.user.username}.stylix.targets.hyprpanel.enable = false;
+
+    # Some widget dependencies
+    services = {
+      blueman.enable = true;
+      libinput.enable = true;
+      power-profiles-daemon.enable = true;
+      upower.enable = true;
     };
   };
 }
