@@ -54,6 +54,7 @@ in
     };
 
     user.homePackages = with pkgs; [
+      blender
       inkscape
       obsidian
       pinta
