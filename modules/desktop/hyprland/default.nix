@@ -44,11 +44,16 @@ in
       rofi = {
         enable = true;
         extraConfig = {
+          modes = "window,drun,run,ssh,calc,emoji";
           kb-remove-to-eol = ""; # remove Control+k default
           kb-accept-entry = "Control+m,Return,KP_Enter"; # remove Control+j default
           kb-row-down = "Down,Control+n,Control+j";
           kb-row-up = "Up,Control+p,Control+k";
         };
+        plugins = with pkgs-unstable; [
+          rofi-calc
+          rofi-emoji
+        ];
         theme = "rounded-nord-dark";
       };
     };

@@ -159,6 +159,8 @@
           "$mainMod, E, exec, $fileManager"
           "Alt, space, exec, $menu"
           "Alt, S, exec, rofi -show ssh"
+          "Alt, E, exec, rofi -show emoji"
+          "Alt, C, exec, rofi -show calc"
           "$mainMod, P, pseudo, # dwindle"
 
           "$mainMod, h, movefocus, l"
