@@ -47,5 +47,7 @@
         };
       };
     };
+
+    user.stylixTargets.firefox.profileNames = [ config.user.username ];
   };
 }

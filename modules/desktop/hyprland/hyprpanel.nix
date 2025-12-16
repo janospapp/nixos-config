@@ -444,7 +444,7 @@
       };
     };
 
-    home-manager.users.${config.user.username}.stylix.targets.hyprpanel.enable = false;
+    user.stylixTargets.hyprpanel.enable = false;
 
     # Some widget dependencies
     services = {

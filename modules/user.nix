@@ -62,6 +62,11 @@ in {
       type = lib.types.attrs;
       description = "The user's Home Manager XDG configuration.";
     };
+
+    stylixTargets = lib.mkOption {
+      type = lib.types.attrs;
+      description = "Override Stylix target configurations";
+    };
   };
 
   config = {
@@ -106,7 +111,7 @@ in {
 
       xdg = cfg.homeXdg;
 
-      stylix.targets.firefox.profileNames = [ cfg.username ];
+      stylix.targets = cfg.stylixTargets;
     };
 
     stylix = {

@@ -27,7 +27,9 @@
 
         # ENVIRONMENT VARIABLES
         env = [
+          "XCURSOR_THEME,Nordzy-cursors"
           "XCURSOR_SIZE,24"
+          "HYPRCURSOR_THEME,Nordzy-cursors"
           "HYPRCURSOR_SIZE,24"
         ];
 
@@ -156,6 +158,7 @@
           "$mainMod, B, exec, $browser"
           "$mainMod, E, exec, $fileManager"
           "Alt, space, exec, $menu"
+          "Alt, S, exec, rofi -show ssh"
           "$mainMod, P, pseudo, # dwindle"
 
           "$mainMod, h, movefocus, l"

@@ -6,6 +6,7 @@ in
   imports = [
     ./plasma
     ./hyprland
+    ./icon-themes.nix
     ./firefox.nix
   ];
 
@@ -16,8 +17,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.displayManager.sddm.enable = true;
-    services.displayManager.sddm.wayland.enable = true;
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      theme = "sddm-astronaut-theme";
+    };
 
     # Enable CUPS to print documents.
     services.printing = {
@@ -37,7 +41,9 @@ in
     };
 
     environment.systemPackages = with pkgs; [
+      kdePackages.qtmultimedia
       libreoffice
+      sddm-astronaut
       simple-scan
     ];
 

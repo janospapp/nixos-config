@@ -68,20 +68,6 @@ let
       runHook postInstall
     '';
   });
-
-  # Install only the `nord` variant of the theme
-  tela-nord-icons = pkgs.tela-icon-theme.overrideAttrs (old: {
-    dontCheckForBrokenSymlinks = true;
-    installPhase = ''
-      runHook preInstall
-
-      patchShebangs install.sh
-      mkdir -p $out/share/icons
-      ./install.sh -d $out/share/icons nord
-
-      runHook postInstall
-    '';
-  });
 in
 {
   imports = [
@@ -108,8 +94,6 @@ in
 
     user.homePackages = [
       nordic
-      tela-nord-icons
-      pkgs.kora-icon-theme
     ];
 
     user.homePrograms = {
