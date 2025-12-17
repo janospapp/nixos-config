@@ -44,7 +44,7 @@ in
       rofi = {
         enable = true;
         extraConfig = {
-          modes = "window,drun,run,ssh,calc,emoji";
+          modes = "window,drun,run,ssh,calc,emoji,nerdy";
           kb-remove-to-eol = ""; # remove Control+k default
           kb-accept-entry = "Control+m,Return,KP_Enter"; # remove Control+j default
           kb-row-down = "Down,Control+n,Control+j";
@@ -53,6 +53,7 @@ in
         plugins = with pkgs-unstable; [
           rofi-calc
           rofi-emoji
+          rofi-nerdy
         ];
         theme = "rounded-nord-dark";
       };
