@@ -466,11 +466,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761297365,
-        "narHash": "sha256-+3NnUbE3Z7HL+9g63mIHLbaxFs3DJS/e5H/Wr9BVeOs=",
+        "lastModified": 1766013474,
+        "narHash": "sha256-uIPorWPnDr2Xp58ItJnm/gTF120VUbrzREeevG3JavQ=",
         "ref": "refs/heads/main",
-        "rev": "cec36991b6e9553f2802defdc2f7e560b7a9c8e1",
-        "revCount": 13,
+        "rev": "eac95761cb3cc27eb9b9d0d55dd080c24c3f45f9",
+        "revCount": 14,
         "type": "git",
         "url": "http://gitea.home2/janos/nixos-config"
       },

@@ -226,8 +226,17 @@
 
         # WINDOWS AND WORKSPACES
         windowrule = [
+          # New window rule syntax that hasn't been released yet.
+          # "suppress_event maximize, match:class .*"
+          # "no_focus, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
+          # "pseudo, size 1230 730, match:class ^Spotify$"
+          # "float, minsize 1200 600, match:class ^com.gabm.satty$"
+          # "pseudo, size 320 710, match:class ^Emulator$, match:float 0"
           "suppressevent maximize, class:.*"
-          "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+          "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
+          "pseudo, size 1230 730, class:^(Spotify)$"
+          "float, minsize 1200 600, class:^(com.gabm.satty)$"
+          "pseudo, size 320 710, class:^(Emulator)$, floating:0"
         ];
 
         workspace = [
@@ -240,12 +249,6 @@
           "7, monitor:eDP-1, persistent:true"
           "8, monitor:eDP-1, persistent:true"
           "9, monitor:eDP-1"
-        ];
-
-        windowrulev2 = [
-          "pseudo size 1520 900,class:^(Spotify)$"
-          "float, class:^(com.gabm.satty)$"
-          "minsize 1200 600,class:^(com.gabm.satty)$"
         ];
       };
     };
