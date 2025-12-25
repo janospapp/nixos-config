@@ -40,6 +40,16 @@ in
       extraBackends = [ epkowaV19 ];
     };
 
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = true;
+        };
+      };
+    };
+
     environment.systemPackages = with pkgs; [
       kdePackages.qtmultimedia
       libreoffice

@@ -43,11 +43,13 @@ in {
 
     homePrograms = lib.mkOption {
       type = lib.types.attrs;
+      default = {};
       description = "The user's Home Manager program configurations.";
     };
 
     homeFiles = lib.mkOption {
       type = lib.types.attrs;
+      default = {};
       description = "What user files to create with Home Manager";
       example = ''
         {
@@ -60,11 +62,13 @@ in {
 
     homeXdg = lib.mkOption {
       type = lib.types.attrs;
+      default = {};
       description = "The user's Home Manager XDG configuration.";
     };
 
     stylixTargets = lib.mkOption {
       type = lib.types.attrs;
+      default = {};
       description = "Override Stylix target configurations";
     };
   };
