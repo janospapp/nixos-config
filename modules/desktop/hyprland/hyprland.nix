@@ -18,6 +18,7 @@
         "$browser" = "firefox";
         "$fileManager" = "kitty yazi";
         "$menu" = "rofi -show drun";
+        "$screenshot" = "bash -c \"$HOME/.local/bin/screenshot.sh\"";
 
         # AUTOSTART
         exec-once = [
@@ -162,6 +163,7 @@
           "Alt, E, exec, rofi -show emoji"
           "Alt, C, exec, rofi -show calc"
           "Alt, I, exec, rofi -show nerdy"
+          "Alt, P, exec, $screenshot"
           "$mainMod, P, pseudo, # dwindle"
 
           "$mainMod, h, movefocus, l"
@@ -226,17 +228,11 @@
 
         # WINDOWS AND WORKSPACES
         windowrule = [
-          # New window rule syntax that hasn't been released yet.
-          # "suppress_event maximize, match:class .*"
-          # "no_focus, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
-          # "pseudo, size 1230 730, match:class ^Spotify$"
-          # "float, minsize 1200 600, match:class ^com.gabm.satty$"
-          # "pseudo, size 320 710, match:class ^Emulator$, match:float 0"
-          "suppressevent maximize, class:.*"
-          "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
-          "pseudo, size 1230 730, class:^(Spotify)$"
-          "float, minsize 1200 600, class:^(com.gabm.satty)$"
-          "pseudo, size 320 710, class:^(Emulator)$, floating:0"
+          "suppress_event maximize, match:class .*"
+          "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
+          "pseudo on, size 1230 730, workspace 6, match:class ^Spotify$"
+          "float on, min_size 1200 600, match:class ^com.gabm.satty$"
+          "pseudo on, size 320 710, match:class ^Emulator$, match:float 0"
         ];
 
         workspace = [

@@ -97,6 +97,8 @@ in {
         packages = with pkgs; [
           nerd-fonts.noto
           nerd-fonts.symbols-only
+          noto-fonts-cjk-sans
+          noto-fonts-cjk-serif
         ] ++ cfg.homePackages;
 
         file = cfg.homeFiles;
