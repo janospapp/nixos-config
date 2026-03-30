@@ -29,6 +29,7 @@ in
     };
     environment.systemPackages = with pkgs-unstable; [
       hyprland-protocols
+      kdePackages.okular # PDF viewer
       nordzy-cursor-theme
       wl-clipboard
     ];
@@ -64,6 +65,15 @@ in
       ".local/share/rofi/themes" = {
         source = ./rofi/themes;
         recursive = true;
+      };
+    };
+
+    user.homeXdg = {
+      mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "application/pdf" = "org.kde.okular.desktop";
+        };
       };
     };
   };
