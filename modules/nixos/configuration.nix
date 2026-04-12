@@ -62,6 +62,7 @@ in
       flake = "/home/${username}/nixos-config";
     };
     ssh.startAgent = true;
+    xwayland.enable = true;
     zsh.enable = true;
   };
 
