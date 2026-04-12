@@ -2,15 +2,14 @@
   description = "NixOS system configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     nvf = {
       url = "github:NotAShelf/nvf";
@@ -18,7 +17,7 @@
     };
 
     stylix = {
-      url = "github:nix-community/stylix/release-25.11";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -59,7 +58,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, nixos-hardware, ... }@inputs:
   let
     inherit (self) outputs;
     systems = [
@@ -74,10 +73,6 @@
       inherit system;
       specialArgs = {
         inherit inputs outputs system;
-        pkgs-unstable = import nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
       };
       modules = [
         ./modules/system.nix

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, ... }:
 {
   config = lib.mkIf config.desktop.hyprland.enable {
     home-manager.users.${config.user.username}.services.hypridle = {

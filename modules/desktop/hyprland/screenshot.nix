@@ -1,7 +1,7 @@
-{ config, lib, pkgs-unstable, ... }:
+{ config, lib, pkgs, ... }:
 {
   config = lib.mkIf config.desktop.hyprland.enable {
-    environment.systemPackages = with pkgs-unstable; [
+    environment.systemPackages = with pkgs; [
       grim # For taking screenshots
       satty # Screenshot annotation tool
       slurp # Select area for screenshots

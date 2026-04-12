@@ -1,4 +1,4 @@
-{ config, lib, pkgs-unstable, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.desktop.hyprland;
 in
@@ -20,14 +20,14 @@ in
     programs = {
       hyprland = {
         enable = true;
-        package = pkgs-unstable.hyprland;
+        package = pkgs.hyprland;
       };
       hyprlock = {
         enable = true;
-        package = pkgs-unstable.hyprlock;
+        package = pkgs.hyprlock;
       };
     };
-    environment.systemPackages = with pkgs-unstable; [
+    environment.systemPackages = with pkgs; [
       hyprland-protocols
       kdePackages.okular # PDF viewer
       nordzy-cursor-theme
@@ -51,7 +51,7 @@ in
           kb-row-down = "Down,Control+n,Control+j";
           kb-row-up = "Up,Control+p,Control+k";
         };
-        plugins = with pkgs-unstable; [
+        plugins = with pkgs; [
           rofi-calc
           rofi-emoji
           rofi-nerdy

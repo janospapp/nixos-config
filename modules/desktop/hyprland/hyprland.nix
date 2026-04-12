@@ -1,4 +1,4 @@
-{ config, lib, pkgs-unstable, ... }:
+{ config, lib, ... }:
 {
   config = lib.mkIf config.desktop.hyprland.enable {
     home-manager.users.${config.user.username}.wayland.windowManager.hyprland = {
