@@ -13,7 +13,7 @@ def g:ToggleAIPanel()
     botright vsplit
 
     # Start terminal in the current window, hidden from other windows
-    term_buf = term_start(['zsh', '-c', 'claude; exec zsh'], {
+    term_buf = term_start(['zsh', '-c', 'claude --continue; exec zsh'], {
       'term_name': 'RightTerm',
       'exit_cb': (_, _) => {
         if bufexists(term_buf)

@@ -230,7 +230,7 @@
         windowrule = [
           "suppress_event maximize, match:class .*"
           "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
-          "pseudo on, size 1230 730, workspace 6, match:class ^Spotify$"
+          "pseudo on, size 1230 730, workspace 6, match:class ^spotify$"
           "float on, min_size 1200 600, match:class ^com.gabm.satty$"
           "pseudo on, size 320 710, match:class ^Emulator$, match:float 0"
         ];

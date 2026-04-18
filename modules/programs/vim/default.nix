@@ -25,18 +25,18 @@
 
     plugins = with pkgs.vimPlugins; [
       ale
-      airline
       arpeggio
       bundler
-      fugitive
       fzf-vim
       nerdtree
       nerdtree-git-plugin
       nerdtree-l-open-h-close
       nord-vim
       ultisnips
+      vim-airline
       vim-airline-themes
       vim-endwise
+      vim-fugitive
       vim-signify
       vim-surround
       vim-tmux-navigator
