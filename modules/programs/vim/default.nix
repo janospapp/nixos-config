@@ -125,7 +125,7 @@
       let g:ale_ruby_rubocop_options = '-c .rubocop.yml'
 
       let g:ale_linters = {
-      \  'ruby': ['rubocop'],
+      \  'ruby': ['solargraph', 'rubocop'],
       \}
 
       let g:ale_fixers={
