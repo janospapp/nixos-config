@@ -99,6 +99,7 @@ in {
           nerd-fonts.symbols-only
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif
+          vlc
         ] ++ cfg.homePackages;
 
         file = cfg.homeFiles;
