@@ -4,8 +4,9 @@ let
 in
 {
   imports = [
-    ./plasma
     ./hyprland
+    ./niri
+    ./plasma
     ./icon-themes.nix
     ./firefox.nix
   ];
