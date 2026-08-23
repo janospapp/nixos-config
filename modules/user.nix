@@ -85,6 +85,7 @@ in {
     home-manager.users.${cfg.username} = {
       imports = [
         inputs.nvf.homeManagerModules.default
+        inputs.noctalia.homeModules.default
       ];
 
       fonts.fontconfig.enable = true;
