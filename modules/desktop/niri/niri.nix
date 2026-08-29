@@ -162,13 +162,16 @@ in
         screenshot-path = "~/Pictures/Screenshots/screenshot_ %Y-%m-%d_%H-%M-%S.png";
 
         workspaces = {
-          "tools" = {
+          "11-tools" = {
+            name = "tools";
             open-on-output = externalMonitor;
           };
-          "browser" = {
+          "12-browser" = {
+            name = "browser";
             open-on-output = externalMonitor;
           };
-          "media" = {
+          "21-media" = {
+            name = "media";
             open-on-output = laptopMonitor;
           };
         };
@@ -203,6 +206,21 @@ in
             };
           }
         ];
+      };
+    };
+
+    user.homeXdg = {
+      portal = {
+        enable = true;
+
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-gnome
+        ];
+
+        config.niri = {
+          "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+        };
       };
     };
   };

@@ -8,7 +8,7 @@
 
   desktop = {
     enable = true;
-    hyprland.enable = true;
+    hyprland.enable = false;
     niri.enable = true;
     plasma.enable = false;
   };
