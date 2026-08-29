@@ -7,6 +7,7 @@ in
     ./hyprland
     ./niri
     ./plasma
+    ./screenshot
     ./icon-themes.nix
     ./firefox.nix
   ];

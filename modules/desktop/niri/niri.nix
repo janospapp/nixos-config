@@ -1,6 +1,12 @@
 { config, lib, pkgs, inputs, ... }:
+let
+  cfg = config.desktop.niri;
+
+  externalMonitor = "Microstep MSI MP271Q PA3T090C00145";
+  laptopMonitor = "eDP-1";
+in
 {
-  config = lib.mkIf config.desktop.niri.enable {
+  config = lib.mkIf cfg.enable {
     programs.niri.enable = true;
 
     user.homePrograms.niri = {
@@ -12,13 +18,15 @@
           "Mod+Shift+Slash".action.show-hotkey-overlay = [];
 
           # Application hotkeys
-          "Mod+T".action.spawn-sh = "kitty tmux";
-          "Alt+Return".action.spawn-sh = "kitty tmux";
-          "Alt+B".action.spawn = "firefox";
-          "Alt+E".action.spawn-sh = "kitty yazi";
+          "Mod+Return".action.spawn-sh = "kitty tmux";
+          "Mod+B".action.spawn = "firefox";
+          "Mod+E".action.spawn-sh = "kitty yazi";
 
           "Alt+Space".action.spawn-sh = ["noctalia msg panel-toggle launcher"];
-          "Alt+P".action.screenshot = [];
+          "Alt+P".action.spawn-sh = "~/.local/bin/screenshot.sh";
+          "Alt+N".action.spawn-sh = "noctalia msg panel-toggle noctalia/notes:panel";
+          "Alt+C".action.spawn-sh = "noctalia msg panel-toggle yuuto/calculator:panel";
+          "Alt+R".action.spawn-sh = "noctalia msg plugin noctalia/screen_recorder:service all start portal";
           "Mod+Shift+E".action.quit = [];
 
           "Mod+Space".action.fullscreen-window = [];
@@ -112,11 +120,11 @@
           };
 
           "XF86MonBrightnessUp" = {
-            action.spawn = ["brightnessctl" "--class=backlight" "set" "+10%"];
+            action.spawn = ["brightnessctl" "--class=backlight" "set" "+5%"];
             allow-when-locked = true;
           };
           "XF86MonBrightnessDown" = {
-            action.spawn = ["brightnessctl" "--class=backlight" "set" "10%-"];
+            action.spawn = ["brightnessctl" "--class=backlight" "set" "5%-"];
             allow-when-locked = true;
           };
         };
@@ -136,6 +144,11 @@
           { argv = ["firefox"]; }
         ];
 
+        cursor = {
+          theme = "Nordzy-cursors";
+          size = 24;
+        };
+
         layout = {
           always-center-single-column = true;
 
@@ -148,20 +161,32 @@
 
         screenshot-path = "~/Pictures/Screenshots/screenshot_ %Y-%m-%d_%H-%M-%S.png";
 
+        workspaces = {
+          "tools" = {
+            open-on-output = externalMonitor;
+          };
+          "browser" = {
+            open-on-output = externalMonitor;
+          };
+          "media" = {
+            open-on-output = laptopMonitor;
+          };
+        };
+
         window-rules = [
           {
             matches = [
               { app-id = "^kitty$"; }
             ];
 
-            open-on-workspace = "1";
+            open-on-workspace = "tools";
           }
           {
             matches = [
               { app-id = "^firefox$"; }
             ];
 
-            open-on-workspace = "2";
+            open-on-workspace = "browser";
           }
           {
             matches = [
@@ -169,7 +194,7 @@
             ];
 
             open-focused = false;
-            open-on-output = "eDP-1";
+            open-on-workspace = "media";
             default-column-width = {
               proportion = 0.7;
             };

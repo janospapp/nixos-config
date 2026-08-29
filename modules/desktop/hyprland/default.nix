@@ -7,7 +7,6 @@ in
     ./hypridle.nix
     ./hyprland.nix
     ./hyprpanel.nix
-    ./screenshot.nix
   ];
 
   options = {
@@ -17,6 +16,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    desktop.screenshot.enable = true;
+
     programs = {
       hyprland = {
         enable = true;
