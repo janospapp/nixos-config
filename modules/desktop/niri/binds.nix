@@ -11,6 +11,7 @@
   "Alt+N".action.spawn-sh = "noctalia msg panel-toggle noctalia/notes:panel";
   "Alt+C".action.spawn-sh = "noctalia msg panel-toggle yuuto/calculator:panel";
   "Alt+R".action.spawn-sh = "noctalia msg plugin noctalia/screen_recorder:service all start portal";
+  "Mod+Escape".action.spawn-sh = "noctalia msg session lock";
   "Mod+Shift+E".action.quit = [];
 
   "Mod+Space".action.fullscreen-window = [];

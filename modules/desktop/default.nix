@@ -4,7 +4,6 @@ let
 in
 {
   imports = [
-    ./hyprland
     ./niri
     ./plasma
     ./screenshot
