@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
+let
+  cfg = config.desktop.screenshot;
+in
 {
-  config = lib.mkIf config.desktop.hyprland.enable {
+  options.desktop.screenshot.enable = lib.mkEnableOption "Screenshot";
+
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       grim # For taking screenshots
       satty # Screenshot annotation tool

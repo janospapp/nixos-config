@@ -8,7 +8,7 @@
 
   desktop = {
     enable = true;
-    hyprland.enable = true;
+    niri.enable = true;
     plasma.enable = false;
   };
   development.enable = true;
@@ -20,9 +20,5 @@
   };
   system = {
     hostname = "dell-xps";
-  };
-  environment.sessionVariables = {
-    EXTERNAL_MONITOR_ID = "DP-7";
-    LAPTOP_RESOLUTION = "1920x1200@60";
   };
 }
