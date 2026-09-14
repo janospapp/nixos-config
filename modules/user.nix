@@ -100,7 +100,8 @@ in {
           nerd-fonts.symbols-only
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif
-          vlc
+          mpv # simple terminal video player
+          celluloid # video player, mpv + GTK GUI
         ] ++ cfg.homePackages;
 
         file = cfg.homeFiles;
