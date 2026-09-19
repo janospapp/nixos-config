@@ -21,11 +21,7 @@ in
     hostName = config.system.hostname;
     networkmanager = {
       enable = true;
-      dns = "none";
     };
-    nameservers = [
-      "9.9.9.9"
-    ];
   };
 
   # Configure network proxy if necessary

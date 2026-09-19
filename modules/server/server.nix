@@ -15,8 +15,8 @@ in
     # Open ports for services that don't open it automatically
     #    80 - nginx, recerse proxy
     #  2049 - NFS
-    allowedTCPPorts = [ 80 111 2049 ];
-    allowedUDPPorts = [ 111 2049 ];
+    allowedTCPPorts = [ 53 80 111 2049 8080 ];
+    allowedUDPPorts = [ 53 111 2049 ];
   };
 
   nixarr = {
@@ -24,7 +24,7 @@ in
 
     bazarr.enable = true;
     jellyfin.enable = true;
-    jellyseerr.enable = true;
+    seerr.enable = true;
     lidarr.enable = true;
     prowlarr.enable = true;
     radarr.enable = true;
@@ -73,6 +73,21 @@ in
       group = "media";
       profileDir = "/data/.state/qbittorrent/";
       webuiPort = 8085;
+    };
+
+    adguardhome = {
+      enable = true;
+      port = 8080;
+      settings = {
+        dns.upstream_dns = [ "9.9.9.9" ];
+        filtering.rewrites = [
+          {
+            domain = "*.home2";
+            answer = "192.168.50.102";
+            enabled = true;
+          }
+        ];
+      };
     };
   };
 

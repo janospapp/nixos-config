@@ -15,14 +15,17 @@
     # Directories for NFS export
     "/export/data1" = {
       device = "/mnt/data1";
+      fsType = "none";
       options = [ "bind" "nofail" ];
     };
     "/export/data2" = {
       device = "/mnt/data2";
+      fsType = "none";
       options = [ "bind" "nofail" ];
     };
     "/export/service_data" = {
       device = "/data/.state";
+      fsType = "none";
       options = [ "bind" "nofail" ];
     };
   };
