@@ -15,7 +15,7 @@ in
     # Open ports for services that don't open it automatically
     #    80 - nginx, recerse proxy
     #  2049 - NFS
-    allowedTCPPorts = [ 53 80 111 2049 8080 ];
+    allowedTCPPorts = [ 53 80 111 2049 ];
     allowedUDPPorts = [ 53 111 2049 ];
   };
 
@@ -78,6 +78,7 @@ in
     adguardhome = {
       enable = true;
       port = 8080;
+      openFirewall = true;
       settings = {
         dns.upstream_dns = [ "9.9.9.9" ];
         filtering.rewrites = [

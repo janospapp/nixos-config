@@ -7,6 +7,8 @@
     { proportion = 2. / 3.; }
   ];
 
+  default-column-width.proportion = 1.0;
+
   gaps = 20;
 
   focus-ring = {

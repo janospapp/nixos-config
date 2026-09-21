@@ -38,6 +38,20 @@ in
         workspaces = import ./workspaces.nix;
 
         window-rules = import ./window-rules.nix;
+
+        outputs = {
+          eDP-1.position = {
+            x = 2560;
+            y = 0;
+          };
+          "Microstep MSI MP271Q PA3T090C00145" = {
+            focus-at-startup = true;
+            position = {
+              x = 0;
+              y = 0;
+            };
+          };
+        };
       };
     };
 

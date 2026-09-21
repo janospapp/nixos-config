@@ -88,11 +88,11 @@
     allow-when-locked = true;
   };
   "XF86AudioRaiseVolume" = {
-    action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
+    action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0";
     allow-when-locked = true;
   };
   "XF86AudioLowerVolume" = {
-    action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+    action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
     allow-when-locked = true;
   };
   "XF86AudioMute" = {

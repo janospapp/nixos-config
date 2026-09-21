@@ -11,8 +11,4 @@
     soundVendorId = "0x10ec0293";
     soundSubsystemId = "0x15581404";
   };
-
-  user.homePackages = with pkgs; [
-    devenv
-  ];
 }

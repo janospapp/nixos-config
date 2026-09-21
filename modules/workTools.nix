@@ -10,6 +10,7 @@ in {
     development.enable = lib.mkForce true;
     user.homePackages = with pkgs; [
       awscli2
+      devenv
       kubectl
       kubectx
       postman

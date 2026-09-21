@@ -22,6 +22,7 @@
     ];
 
     open-on-workspace = "browser";
+    default-column-width.proportion = 1.0;
   }
   {
     matches = [
