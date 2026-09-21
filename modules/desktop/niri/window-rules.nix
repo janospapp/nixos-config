@@ -7,7 +7,6 @@
       bottom-right = 10.0;
     };
     clip-to-geometry = true;
-    opacity = 0.95;
   }
   {
     matches = [
@@ -15,6 +14,7 @@
     ];
 
     open-on-workspace = "tools";
+    opacity = 0.95;
   }
   {
     matches = [
@@ -26,7 +26,7 @@
   }
   {
     matches = [
-      { app-id = "^spotify$"; }
+      { app-id = "^Spotify$"; }
     ];
 
     opacity = 0.9;

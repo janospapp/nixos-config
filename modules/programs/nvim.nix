@@ -17,7 +17,7 @@
         nix.enable = true;
         ruby.enable = true;
         sql.enable = true;
-        ts.enable = true;
+        typescript.enable = true;
       };
 
       vim.extraPlugins = {

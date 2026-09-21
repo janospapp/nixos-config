@@ -59,6 +59,7 @@ in
       # Needed for media keys
       brightnessctl
       playerctl
+      xwayland-satellite
     ];
 
     user.homeXdg = {
