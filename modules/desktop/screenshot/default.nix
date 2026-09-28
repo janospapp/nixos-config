@@ -10,6 +10,7 @@ in
       grim # For taking screenshots
       satty # Screenshot annotation tool
       slurp # Select area for screenshots
+      wl-clipboard
     ];
 
     user.homePrograms = {

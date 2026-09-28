@@ -26,8 +26,8 @@
   "Mod+L".action.focus-column-right = [];
 
   "Mod+Shift+H".action.move-column-left = [];
-  "Mod+Shift+J".action.move-workspace-down = [];
-  "Mod+Shift+K".action.move-workspace-up = [];
+  "Mod+Shift+J".action.move-column-to-workspace-down = [];
+  "Mod+Shift+K".action.move-column-to-workspace-up = [];
   "Mod+Shift+L".action.move-column-right = [];
   "Mod+Tab".action.focus-monitor-next = [];
   "Mod+Shift+Tab".action.move-window-to-monitor-next = [];

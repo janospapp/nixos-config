@@ -10,6 +10,7 @@
     };
 
     settings = {
+      auto_reload_config = "-1";
       enable_audio_bell = "no";
       enabled_layouts = "splits:split_axis:vertical, grid";
       font_size = "12.0";

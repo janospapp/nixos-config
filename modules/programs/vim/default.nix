@@ -68,6 +68,26 @@
       highlight ExtraWhitespace ctermbg=red guibg=darkgreen
       match ExtraWhitespace /\s\+$\| \+\ze\t/
 
+      " Let tmux know vim is running
+      if exists('$TMUX')
+        function! s:tmux_vim_active(value) abort
+          if empty($TMUX_PANE)
+            return
+          endif
+
+          call system(
+                \ 'tmux set-option -p -t ' . shellescape($TMUX_PANE) .
+                \ ' @vim_active ' . a:value
+                \ )
+        endfunction
+
+        augroup tmux_vim_navigator
+          autocmd!
+          autocmd VimEnter * call <SID>tmux_vim_active(1)
+          autocmd VimLeave * call <SID>tmux_vim_active(0)
+        augroup END
+      endif
+
       " NERDTree configuration
       nmap <C-n> :NERDTreeToggle<CR>
       nmap <leader>j :NERDTreeFind<CR>

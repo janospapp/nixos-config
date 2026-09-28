@@ -13,10 +13,10 @@
       bind - split-window -v -c "#{pane_current_path}"
 
       # Have a vim-like pane movement
-      bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-h) || tmux select-pane -L"
-      bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-j) || tmux select-pane -D"
-      bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-k) || tmux select-pane -U"
-      bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-l) || tmux select-pane -R"
+      bind -n C-h if-shell '[ "#{@vim_active}" = "1" ]' 'send-keys C-h' 'select-pane -L'
+      bind -n C-j if-shell '[ "#{@vim_active}" = "1" ]' 'send-keys C-j' 'select-pane -D'
+      bind -n C-k if-shell '[ "#{@vim_active}" = "1" ]' 'send-keys C-k' 'select-pane -U'
+      bind -n C-l if-shell '[ "#{@vim_active}" = "1" ]' 'send-keys C-l' 'select-pane -R'
 
       bind-key -T copy-mode-vi C-h select-pane -L
       bind-key -T copy-mode-vi C-j select-pane -D
