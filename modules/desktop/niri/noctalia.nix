@@ -113,7 +113,7 @@ in
           builtin = "Nord";
           community_palette = "Oxocarbon";
           mode = "dark";
-          source = "builtin";
+          source = lib.mkForce "builtin";
           wallpaper_scheme = "m3-content";
         };
 
