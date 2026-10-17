@@ -23,7 +23,10 @@ in
     enable = true;
 
     bazarr.enable = true;
-    jellyfin.enable = true;
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
     seerr.enable = true;
     lidarr.enable = true;
     prowlarr.enable = true;
@@ -44,7 +47,10 @@ in
     gitea = {
       enable = true;
       stateDir = "/data/.state/gitea/";
-      settings.server.HTTP_PORT = 9002;
+      settings.server = {
+        HTTP_PORT = 9002;
+        ROOT_URL = "http://gitea.home2";
+      };
     };
 
     navidrome = {
