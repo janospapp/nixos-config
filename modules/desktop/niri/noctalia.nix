@@ -130,6 +130,8 @@ in
             type = "noctalia/screen_recorder:recorder";
           };
         };
+
+        lockscreen_widgets = import ./lockscreen_widgets.nix;
       };
     };
 
