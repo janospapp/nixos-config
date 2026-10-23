@@ -129,6 +129,10 @@ in
           recorder = {
             type = "noctalia/screen_recorder:recorder";
           };
+
+          clock = {
+            format = "{:%Y %b %d, %H:%M}";
+          };
         };
 
         lockscreen_widgets = import ./lockscreen_widgets.nix;

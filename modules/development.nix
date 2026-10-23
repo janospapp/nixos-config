@@ -15,7 +15,8 @@ in {
           standard
         ]
       ))
-      pkgs.claude-code
+      claude-code
+      gh
     ];
 
     user.homePrograms = {
